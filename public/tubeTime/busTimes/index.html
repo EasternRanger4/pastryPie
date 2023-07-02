@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <!--Meta Data-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--User Head Data-->
+    <title>Bus Times</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link href="../../universal.css" rel="stylesheet" type="text/css" />
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1 onclick="home()">Kamran Industries</h1>
+            <div class="banner-links">
+                <span id="linksLL"></span>
+            </div>
+        </div>
+    </header>
+    <boddy>
+        <br>
+        <button onclick="goBack()">Go to Tube Time Home</button>
+        <br> <br>
+        <div id="button">Loading Button...</div>
+        <div id="content"><div class="loader"></div></div> <br>
+        <br> <br> <br> <div id="buffer">Buffer</div>
+    </boddy>
+    <footer id="footer">
+    </footer>
+    <script src="../../universal.js"></script>
+    <script src="../../loginCheck.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <script src="../script.js"></script>
+    <script src="script.js"></script>
+    <script src="../pageScript.js"></script>
+</body>

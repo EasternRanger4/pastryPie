@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <!--Meta Data-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--User Head Data-->
+    <title>Contact</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link href="../universal.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1 onclick="home()">Kamran Industries</h1>
+            <div class="banner-links">
+                <span id="linksLL"></span>
+            </div>
+        </div>
+    </header>
+    <boddy>
+        <div id="content">
+            <div id="welcome"></div>
+            Click on a service below to get started! <br>
+            <br>
+            <div id="tubeTime" class="service" onclick="tubeTime()"> 
+                <div class="serviceHead" id="ttHead" >Tube Time</div>
+                <div class="serviceContent" id="ttcont"> Get the latest information from Transport For London. </div>
+            </div>
+            <div id="orderSessions" class="service" onclick="orderSessions()"> 
+                <div class="serviceHead" id="osHead" >Menu Sessions</div>
+                <div class="serviceContent" id="osConnt"> If you have a virtual session code for a menu you can access it here. </div>
+            </div>
+        </div>
+        <div id="button">
+            <button onclick="logout()">Logout</button>
+            <span id="myAccount"></span>
+            <button onclick="myAccount()">My Account</button>
+            <span id="apri"></span>
+        </div>
+        <div id="afterContent"></div>
+    </boddy>
+    <footer id="footer">
+    </footer>
+    <script src="../universal.js"></script>
+    <script src="../loginCheck.js"></script>
+    <script src="script.js"></script>
+</body>

@@ -1,0 +1,15 @@
+#bus {
+    background-color: #D01A1E;
+    color: white;
+    margin: 10px;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.sortable {
+    cursor: pointer;
+  }
+  
+#map { height: 580px;}
