@@ -151,6 +151,13 @@ function back() {
     dataCheck()
 }
 function apriTrue(apri) {
-    console.log(apri)
+    if (apri == "admin") {
+        window.apri = apri
+        document.getElementById("apri").innerHTML= '<button onclick="apriClick()">Admin</button>';
+    }
+}
+
+function apriClick() {
+    window.location = "/admin"
 }
 dataCheck()

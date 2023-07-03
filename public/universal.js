@@ -6,7 +6,8 @@ async function setItems() {
     }  
 
     const toSet1 = `<a href="/about">About</a><a href="/contact">Contact</a><a href="/news">News</a>${window.page}`;
-    const toSet2 = `<p>&copy; 2023 Kamran Tailor. All rights reserved. Pastry Pie V0.00 <br> <a href="/legal">legal</a> <a href="/sitemap">Sitemap</a></p></footer>`
+    const toSet2 = `<p>&copy; 2023 Kamran Tailor. All rights reserved. Pastry Pie V0.01 <br> <a href="/legal">legal</a> <a href="/sitemap">Sitemap</a>
+    <a href="https://github.com/EasternRanger4/pastryPie">Git Hub</a></p></footer>`
     document.getElementById("linksLL").innerHTML= toSet1;
     document.getElementById("footer").innerHTML= toSet2;
 };
