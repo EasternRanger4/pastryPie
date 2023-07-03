@@ -152,21 +152,43 @@ app.post("/updateUser", async (request, response) => {
     const userIdToUpdate = request.body.userid;
     const userToUpdate = userData.find(user => user.userid === userIdToUpdate);
 
-    if (userToUpdate) {
-      // Update the user data with the provided values
-      userToUpdate.fname = request.body.fname;
-      userToUpdate.mname = request.body.mname;
-      userToUpdate.lname = request.body.lname;
-      userToUpdate.password = request.body.password;
-      userToUpdate.dob = request.body.dob;
+    if (request.body.admin == undefined) {
+      if (userToUpdate) {
+        // Update the user data with the provided values
+        userToUpdate.fname = request.body.fname;
+        userToUpdate.mname = request.body.mname;
+        userToUpdate.lname = request.body.lname;
+        userToUpdate.password = request.body.password;
+        userToUpdate.dob = request.body.dob;
 
-      // Save the updated data back to the file
-      fs.writeFileSync('data/userdata.json', JSON.stringify(userData, null, 2), 'utf8');
+        // Save the updated data back to the file
+        fs.writeFileSync('data/userdata.json', JSON.stringify(userData, null, 2), 'utf8');
 
-      // Send a response indicating success
-      response.json({ message: true });
-    } else {
-      response.json({ message: false, error: 'User not found with the provided userid.' });
+        // Send a response indicating success
+        response.json({ message: true });
+      } else {
+        response.json({ message: false, error: 'User not found with the provided userid.' });
+      }
+    } else if (request.body.admin == true) {
+      if (userToUpdate) {
+        // Update the user data with the provided values
+        userToUpdate.fname = request.body.fname;
+        userToUpdate.mname = request.body.mname;
+        userToUpdate.lname = request.body.lname;
+        userToUpdate.password = request.body.password;
+        userToUpdate.username = request.body.username;
+        userToUpdate.dob = request.body.dob;
+        userToUpdate.userid = request.body.userid;
+        userToUpdate.clinetApri = request.body.clinetApri;
+
+        // Save the updated data back to the file
+        fs.writeFileSync('data/userdata.json', JSON.stringify(userData, null, 2), 'utf8');
+
+        // Send a response indicating success
+        response.json({ message: true });
+      } else {
+        response.json({ message: false, error: 'User not found with the provided userid.' });
+      }
     }
   } catch (error) {
     console.error(error);
@@ -267,6 +289,124 @@ app.post("/cocktails", async (request, response) => {
     });
   }
 });
-let port = 80;
+
+app.post("/admin", (request, response) => {
+  if (request.body.type == "addUser") { 
+    const fname = request.body.fname; // First Name
+    const mname = request.body.mname; // Middle Name
+    const lname = request.body.lname; // Last Name
+    const password = request.body.password; // Password
+    const dob = request.body.dob; // Date of birth
+    const clientApri = "false";
+
+    let username = `${lname.toLowerCase()},${dob.split("-")[0]}`; // lastName,yearborn
+
+    // Check if username is already in use in data/userData.json
+    const userData = JSON.parse(fs.readFileSync("data/userData.json", "utf8"));
+
+    let isUsernameTaken = userData.some(user => user.username === username);
+    let suffix = "a";
+    while (isUsernameTaken) {
+      username = `${lname.toLowerCase()}${dob.split("-")[0]}${suffix}`;
+      isUsernameTaken = userData.some(user => user.username === username);
+      suffix = String.fromCharCode(suffix.charCodeAt(0) + 1);
+    }
+
+    var maxUserId = "0";
+
+    for (var i = 0; i < userData.length; i++) {
+      if (userData[i].userid > maxUserId) {
+        maxUserId = userData[i].userid;
+      }
+    }
+
+    var userid = String(Number(maxUserId) + 1);
+    const userSSC = generateRandomCode(4);
+
+    const newUser = {
+      fname,
+      mname,
+      lname,
+      password,
+      dob,
+      clientApri,
+      username,
+      userid,
+      userSSC
+    };
+
+    userData.push(newUser);
+    fs.writeFileSync("data/userData.json", JSON.stringify(userData, null, 2));
+
+    return response.json({ message: true, content: newUser });
+  } else if (request.body.type == "viewUser") {
+    const filePath = 'data/userData.json';
+      fs.readFile(filePath, 'utf8', (err, data) => {
+          const jsonData = JSON.parse(data);
+          response.json({ message: true, content: jsonData });
+      });
+  } else if (request.body.type == "delUser") {
+      // Path to the JSON file
+      const filePath = 'data/userData.json';
+
+      // Read the JSON file
+      fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+          console.error('Error reading the file:', err);
+          return;
+        }
+
+        try {
+          // Parse the JSON data into an array of objects
+          const users = JSON.parse(data);
+
+          // User ID to delete
+          const userIdToDelete = request.body.userid;
+
+          // Find the index of the user with the matching user ID
+          const userIndex = users.findIndex(user => user.userid === userIdToDelete);
+
+          if (userIndex !== -1) {
+            // Remove the user object from the array
+            users.splice(userIndex, 1);
+
+            // Convert the updated array back into JSON
+            const updatedJsonData = JSON.stringify(users, null, 2);
+
+            // Write the updated JSON back to the file
+            fs.writeFile(filePath, updatedJsonData, 'utf8', err => {
+              if (err) {
+                console.error('Error writing to the file:', err);
+                response.json({ message: false });
+                return;
+              }
+
+              response.json({ message: true });
+            });
+          } else {
+            response.json({ message: false });
+          }
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+          response.json({ message: false });
+        }
+      });
+
+  }
+});
+
+function generateRandomCode(length) {
+  let result = "";
+  const characters = "0123456789";
+  const charactersLength = characters.length;
+
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
+}
+
+let port = 3000;
 app.use(express.static("public"));
 app.listen(port, () => console.log(`Listening at port ${port}`));
