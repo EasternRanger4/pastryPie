@@ -27,7 +27,9 @@ function orderSessions() {
     const code = prompt("Code");
     if (code == "001") {
         window.location = "../client/tailorCocktails";
-    } else {
+    } else if (code == "002") {
+        window.location = "../client/nicholas"
+    }else {
         alert("Invaled Session Code")
     }
 }

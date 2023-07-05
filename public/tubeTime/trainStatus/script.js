@@ -26,7 +26,10 @@ async function onStart() {
     <div id="ells" class="cop" onclick="extraInfo('elz')"> Elizabeth Line: <br> ${dataEL[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>
     <div id="dlrs" class="cop" onclick="extraInfo('dlr')"> Docklands Light Railway: <br> ${dataDLR[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>
     <div id="lnos" class="cop" onclick="extraInfo('log')"> London Overground: <br> ${dataOVR[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>
-    <div id="trms" class="cop" onclick="extraInfo('trm')"> Trams: <br> ${dataTRM[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>`
+    <div id="trms" class="cop" onclick="extraInfo('trm')"> Trams: <br> ${dataTRM[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>
+    <div id="buf" class="cop" ></div><div id="buf" class="cop"></div><div id="buf" class="cop"></div><div id="buf" class="cop"></div>
+    `
+
     document.getElementById("content").innerHTML= toSet;
 }
 

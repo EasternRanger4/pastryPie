@@ -1,0 +1,9 @@
+.thicker-line {
+    height: 3.5px;
+    border: none;
+    border-radius: 3.5;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color:  gray;
+  }
+  

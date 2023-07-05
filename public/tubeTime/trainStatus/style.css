@@ -63,3 +63,8 @@
     text-decoration: underline;
     width: fit-content;
 }
+
+#buf {
+background-color: white;
+color: white;
+}

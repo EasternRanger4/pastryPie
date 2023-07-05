@@ -7,14 +7,26 @@ async function getCurrentPosition() {
         }
     });
 }
-  
 
-async function onStart() {
+function onStartTemp() {
+    const txt2 = `            AS THIS WEBSITE IS NOT SECURE WE DO NOT HAVE ABILATYS TO USE GEOLOCATION <br>
+    To use this service please enter your lon and lat <br>
+    The location has to be within the Greater London Area <br>
+    Lat: <input type="text" id="lat"> <br>            
+    Lon: <input type="text" id="lon"> <br>           
+    <br>
+    <button onclick="onStart()">Submit</button>`
+    document.getElementById("button").innerHTML= "";
+    document.getElementById("content").innerHTML= txt2;
+}
+
     //Get Data
-    const position = await getCurrentPosition();
-    const lon = position.coords.longitude;
-    const lat = position.coords.latitude;
-
+    //const position = await getCurrentPosition();
+    //const lon = position.coords.longitude;
+    //const lat = position.coords.latitude;
+async function onStart() {
+    const lon = document.getElementById("lon").value;
+    const lat = document.getElementById("lat").value;
     console.log(lon, lat)
     const response = await fetch("/tflBusPoints", {
         method: "POST",
@@ -128,7 +140,7 @@ async function seeTimes(send) {
         </tr>`
     }
     window.windowSend = send
-    const button = `<button onclick="onStart()">Restart</button><button onclick="startTime()">Refresh</button>`
+    const button = `<button onclick="onStartTemp()">Restart</button><button onclick="startTime()">Refresh</button>`
     document.getElementById("tableData").innerHTML = tabeleDta;
     document.getElementById("button").innerHTML = button;
     sortTable(1)
@@ -184,5 +196,5 @@ function sortTable(n) {
     }
   }
   
-onStart();
+//onStart();
   
