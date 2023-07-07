@@ -13,6 +13,7 @@ function onStart() {
     <option value="waterloo-city">Waterloo & City</option>
     <option value="dlr">DLR</option>
     <option value="tram">Tram</option>
+    <option value="elizabeth">Elizabeth Line</option>
     
     </select>`
     const txt1 = `<button onclick="findStation()">Find Station</button>`
@@ -22,7 +23,7 @@ function onStart() {
 
 async function findStation() {
     const line = document.getElementById("line").value;
-    const responce = await fetch("/tflStopPoints", {
+    const responce = await fetch("/tfl/stopPoints", {
         method: "POST",
         headers: {
           "Content-Type": "application/json ",
@@ -117,7 +118,7 @@ function stationInfo(id) {
 function viewStationMap(mapData) {
     const txt4 = `<div id="map"></div>`;
     document.getElementById("mapPlaceHolder").innerHTML= txt4;
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    var map = L.map('map').setView([window.mapData[1], window.mapData[0]], 13);
     var roundal = L.icon({
         iconUrl: 'roundal.png',
         iconSize: [30, 26],

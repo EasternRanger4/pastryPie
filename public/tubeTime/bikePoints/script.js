@@ -11,7 +11,7 @@ async function onStart() {
     tiles.addTo(map);
   
     try {
-      const response = await fetch('/tflBikePoints');
+      const response = await fetch('/tfl/bikePoints');
       if (!response.ok) {
         throw new Error('Failed to fetch bike points data.');
       }

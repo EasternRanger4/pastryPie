@@ -17,7 +17,7 @@ async function onStart() {
     const tiles = L.tileLayer(tileUrl, { attribution });
     tiles.addTo(map);
   
-    const response = await fetch('/tflRoadDis');
+    const response = await fetch('/tfl/roadDis');
     const data = await response.json();
     console.log(data)
     const markers = []; // Array to store markers

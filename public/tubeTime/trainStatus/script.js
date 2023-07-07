@@ -1,5 +1,5 @@
 async function onStart() {
-    const responce = await fetch("/tflTrainStatus");
+    const responce = await fetch("/tfl/trainStatus");
     const data = await responce.json();
     console.log(data)
     window.dataTUBE = data.tubeDta;
@@ -23,7 +23,7 @@ async function onStart() {
     <div id="pics" class="cop" onclick="extraInfo('pic')"> Piccadilly: <br> ${dataTUBE[8]["lineStatuses"][0]["statusSeverityDescription"]}</div>
     <div id="vics" class="cop" onclick="extraInfo('vic')"> Victoria: <br> ${dataTUBE[9]["lineStatuses"][0]["statusSeverityDescription"]}</div>
     <div id="w_cs" class="cop" onclick="extraInfo('wac')"> Waterloo & City: <br> ${dataTUBE[10]["lineStatuses"][0]["statusSeverityDescription"]}</div>
-    <div id="ells" class="cop" onclick="extraInfo('elz')"> Elizabeth Line: <br> ${dataEL[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>
+    <div id="ells" class="cop" onclick="extraInfo('dataEL')"> Elizabeth Line: <br> ${dataEL[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>
     <div id="dlrs" class="cop" onclick="extraInfo('dlr')"> Docklands Light Railway: <br> ${dataDLR[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>
     <div id="lnos" class="cop" onclick="extraInfo('log')"> London Overground: <br> ${dataOVR[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>
     <div id="trms" class="cop" onclick="extraInfo('trm')"> Trams: <br> ${dataTRM[0]["lineStatuses"][0]["statusSeverityDescription"]}</div>
@@ -35,7 +35,7 @@ async function onStart() {
 
 function extraInfo(line) {
     var relitiveDta = "";
-    window.sig = false;
+    var sig = false;
     if (line == "bkl") {
         relitiveDta = data.tubeDta[0];
     } else if (line == "cnt") {
@@ -59,8 +59,7 @@ function extraInfo(line) {
     } else if (line == "wac") {
         relitiveDta = data.tubeDta[10];
     } else if (line == "dataEL") {
-        relitiveDta = window.data.elizabethDta;
-        window.sig = true;
+        relitiveDta = data.elizabethDta[0];
     } else if (line == "dlr") {
         relitiveDta = dataDLR[0];
     } else if (line == "log") {
@@ -70,20 +69,12 @@ function extraInfo(line) {
     };
 
     console.log(sig)
-    if (sig == true) {
-        console.log(true)
-        if (window.data.elizabethDta[0].lineStatuses[0].reason == undefined) {
-            alert(`${window.data.elizabethDta[0].name}: Good Service`)
-        } else {
-            alert(window.data.elizabethDta[0].lineStatuses[0].reason)
-        }
-    } else if (sig == false){
-        console.log(false)
-        if (relitiveDta.lineStatuses[0].reason == undefined) {
-            alert(`${relitiveDta.name}: Good Service`)
-        } else {
-            alert(relitiveDta.lineStatuses[0].reason)
-        }
+    console.log(false)
+    if (relitiveDta.lineStatuses[0].reason == undefined) {
+        alert(`${relitiveDta.name}: Good Service`)
+    } else {
+        alert(relitiveDta.lineStatuses[0].reason)
     }
 }
+
 onStart()

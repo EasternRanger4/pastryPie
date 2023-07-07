@@ -7,7 +7,8 @@ app.use(express.json());
 require('dotenv').config()
 
 //Requer api files 
-//const cocktailRoutes = require('./apiRequests/cocktailRoutes');
+const cocktailRoutes = require('./apiRequests/cocktailRoutes');
+const tflRoutes = require('./apiRequests/tflRoutes');
 
 //Load Databases
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
@@ -16,230 +17,12 @@ const cocktailMenu = new Datastore("data/client/cocktails/cocktails.db");
 cocktailMenu.loadDatabase();
 const cocktailOrders = new Datastore("data/client/cocktails/cocktailOrders.db");
 cocktailOrders.loadDatabase();
+const pageViews = new Datastore("data/history/pageViews.db");
+pageViews.loadDatabase();
 
 //APP.USE
-//app.use('/cocktails', cocktailRoutes);
-
-app.post("/cocktails", async (request, response) => {
-  if (request.body.type == "seeOrders") {
-    cocktailOrders.find({}, (err, documents) => {
-      if (err) { response.json({ message: false, type: "error locating dataBase"});;} 
-      else { response.json({ message: true, content: documents}) ;}
-    });
-  } else if (request.body.type == "addMenu") {
-    const name = request.body.name;
-    const info = request.body.info;
-    const url = request.body.url;
-    const cat = request.body.cat;
-    const insertedEntry = { name, info, url, cat }; // Use insertedEntry instead of newEntry
-    cocktailMenu.insert(insertedEntry, (err, insertedEntry) => { // Use insertedEntry instead of newEntry
-      if (err) {
-        response.json({ message: false, type: "error locating database" });
-      } else {
-        response.json({ message: true });
-      }
-    });
-  } else if (request.body.type == "seeMenu") {
-    cocktailMenu.find({}, (err, documents) => {
-      if (err) { response.json({ message: false, type: "error locating dataBase"});;} 
-      else { response.json({ message: true, content: documents, type: request.body.type}) ;}
-    });
-  } else if (request.body.type == "delMenuItem") {
-    const itemId = request.body._id;
-    cocktailMenu.remove({ _id: itemId }, {}, (err, numRemoved) => {
-      if (err) {
-        response.json({ message: false, type: "error locating database" });
-      } else if (numRemoved === 0) {
-        response.json({ message: false, type: "item not found" });
-      } else {
-        response.json({ message: true });
-      }
-    });
-  } else if (request.body.type == "getEnt") {
-    const entryId = request.body._id
-    cocktailMenu.findOne({ _id: entryId }, (err, entry) => {
-      if (err) {
-        response.json({ message: false, type: "error locating entey" });
-      } 
-      if (entry) {
-        response.json({ message: true, content: entry}); 
-      } else {
-        response.json({ message: false, type: "error locating entey" });
-      }
-    });
-  } else if (request.body.type == "updateEnt") {
-    const updatedValues = {
-      name: request.body.name,
-      info: request.body.info,
-      url: request.body.url,
-      cat: request.body.cat
-    };
-    const entryId = request.body._id;
-    cocktailMenu.update({ _id: entryId }, { $set: updatedValues }, {}, (err, numAffected) => {
-      if (err) {
-        response.json({ message: false, type: "error locating entey" });
-        return;
-      }
-    
-      if (numAffected > 0) {
-        response.json({ message: true}); 
-      } else {
-        response.json({ message: false, type: "error locating entey" });
-      }
-    });
-  } else if (request.body.type == "delOrder") {
-    const itemId = request.body._id;
-    cocktailOrders.remove({ _id: itemId }, {}, (err, numRemoved) => {
-      if (err) {
-        response.json({ message: false, type: "error locating database" });
-      } else if (numRemoved === 0) {
-        response.json({ message: false, type: "item not found" });
-      } else {
-        response.json({ message: true });
-      }
-    });
-  } else if (request.body.type == "addOrder") {
-    const name = request.body.name;
-    const cocktail = request.body.cocktail;
-    const notes = request.body.notes;
-    const contact = request.body.contact;
-    const insertedEntry = { name, cocktail, notes, contact}; // Use insertedEntry instead of newEntry
-    cocktailOrders.insert(insertedEntry, (err, insertedEntry) => { // Use insertedEntry instead of newEntry
-      if (err) {
-        response.json({ message: false, type: "error locating database" });
-      } else {
-        response.json({ message: true });
-      }
-    });
-  }
-});
-//Test Command
-app.post('/test', (request, response) => {
-  console.log("");
-  response.json({ message: true});
-  console.log("****TEST**** ")
-  console.log(request.body)
-});
-//Login
-app.post('/login', (request, response) => {
-  const { username, password } = request.body;
-  const users = JSON.parse(fs.readFileSync('data/userData.json', 'utf-8'));
-
-  const user = users.find(user => user.username === username && user.password === password);
-
-  if (user) {
-    response.json({ message: true, user });
-    databaseLoginHistory.insert({message: true, username: username});
-  } else {
-    response.json({ message: false});
-    databaseLoginHistory.insert({message: false, username: username});
-  }
-});
-//Internal data check
-app.post('/intDataCheck', (request, response) => {
-  const userid = request.body.userID;
-  const userSSC = request.body.userSSC;
-  const users = JSON.parse(fs.readFileSync('data/userData.json', 'utf-8'));
-
-  const user = users.find(user => user.userid === userid && user.userSSC === userSSC);
-
-  if (user) {
-    response.json({ message: true , content: user});
-  } else {
-    response.json({ message: false});
-  }
-});
-//TFL Bike Points
-app.get("/tflBikePoints", async (request, response) => {
-  const tflKey = process.env.KEY
-  const url = `https://api.tfl.gov.uk/BikePoint?app_id=${tflKey}`;
-  const tflresponce = await fetch (url);
-  const tflBikePoint = await tflresponce.json();
-  response.json({ message: true, tflBikePoint });
-});
-//TFL Road Distruptions
-app.get("/tflRoadDis", async (request, response) => {
-  const tflKey = process.env.KEY
-  const url = `https://api.tfl.gov.uk/Road/All/Disruption?stripContent=false&app_id=${tflKey}`;
-  const tflresponce = await fetch (url);
-  const tflRoadDis = await tflresponce.json();
-  response.json({ message: true, tflRoadDis });
-});
-//TFL Train status
-app.get("/tflTrainStatus", async (request, response) => {
-  const tflKey = process.env.KEY
-  const tubeURL = `https://api.tfl.gov.uk/line/mode/tube/status?app_id=${tflKey}`;
-  const tubeRes = await fetch(tubeURL);
-  const tubeDta = await tubeRes.json();
-  const elizabethURL = `https://api.tfl.gov.uk/line/mode/elizabeth-line/status?app_id=${tflKey}`;
-  const elizabethRES = await fetch(elizabethURL);
-  const elizabethDta = await elizabethRES.json();
-  const dlrURL = `https://api.tfl.gov.uk/line/mode/dlr/status?app_id=${tflKey}`;
-  const dlrRES = await fetch(dlrURL);
-  const dlrDta = await dlrRES.json();
-  const overgroundURL = `https://api.tfl.gov.uk/line/mode/overground/status?app_id=${tflKey}`;
-  const overgroundRES = await fetch(overgroundURL);
-  const overgroundDta = await overgroundRES.json();
-  const tramURL = `https://api.tfl.gov.uk/line/mode/tram/status?app_id=${tflKey}`;
-  const tramRES = await fetch(tramURL);
-  const tramDta = await tramRES.json();
-
-  response.json({ message: true, tubeDta, elizabethDta, dlrDta, overgroundDta, tramDta });
-});
-//TFL Stop Points 
-app.post("/tflStopPoints", async (request, responce) => {
-  const tflKey = process.env.KEY
-  const url = `https://api.tfl.gov.uk/line/${request.body.line}/stoppoints?app_id=${tflKey}`
-  const aresponce = await fetch(url);
-  const data = await aresponce.json();
-  var line = "";
-  if (request.body.line === "bakerloo") {
-    line = "Bakerloo";
-  } else if (request.body.line === "central") {
-    line = "Central";
-  } else if (request.body.line === "circle") {
-    line = "Circle";
-  } else if (request.body.line === "district") {
-    line = "District";
-  } else if (request.body.line === "hammersmith-city") {
-    line = "Hammersmith & City";
-  } else if (request.body.line === "jubilee") {
-    line = "Jubilee";
-  } else if (request.body.line === "metropolitan") {
-    line = "Metropolitan";
-  } else if (request.body.line === "northern") {
-    line = "Northern";
-  } else if (request.body.line === "piccadilly") {
-    line = "Piccadilly";
-  } else if (request.body.line === "victoria") {
-    line = "Victoria";
-  } else if (request.body.line === "waterloo-city") {
-    line = "Waterloo & City";
-  } else {
-    line = request.body.line
-  }
-  responce.json({data, line});
-
-});
-//TFL Bus Times {RADIUS} 
-app.post("/tflBusPoints", async (request, responce) => {
-  const tflKey = process.env.KEY
-  const lat = request.body.lat;
-  const lon = request.body.lon;
-  const url = `https://api.tfl.gov.uk/StopPoint?lat=${lat}&lon=${lon}&stopTypes=NaptanPublicBusCoachTram&radius=700&app_id=${tflKey}`;
-  const apiResponce = await fetch(url);
-  const resData = await apiResponce.json();
-  responce.json({ message: true, resData});
-});
-//TFL Bus Times
-app.post("/tflBusTimes", async (request, responce) => {
-  const tflKey = process.env.KEY
-  const id = request.body.id;
-  const url = `https://api.tfl.gov.uk/StopPoint/${id}/Arrivals?app_id=${tflKey}`;
-  const apiResponce = await fetch(url);
-  const resData = await apiResponce.json();
-  responce.json({ message: true, resData});
-});
+app.use('/cocktails', cocktailRoutes);
+app.use('/tfl', tflRoutes);
 
 app.post("/updateUser", async (request, response) => {
   try {
@@ -407,6 +190,72 @@ app.post("/clinetPinCodes", async (request, responce) => {
     const toSend = process.env.FCADMINPIN
     responce.json({ message: true, toSend});
   } 
+});
+
+app.post('/geocode', async (req, res) => {
+  try {
+    const address = req.body.address;
+    const apiKey = 'bd4747c0a1384a00a9490be28c8a86c6';
+
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&countrycode=gb&key=${apiKey}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    res.json({ message: true, content: data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
+app.post('/pageView', async (request, responce) => {
+  try {
+    pageViews.insert({
+      ipAddress: request.body.ipAddress,
+      userAgent: request.body.userAgent
+    });
+    responce.json({message: true})
+  } catch (error) {
+    responce.json({message: false})
+  }
+});
+
+//Test Command
+app.post('/test', (request, response) => {
+  console.log("");
+  response.json({ message: true});
+  console.log("****TEST**** ")
+  console.log(request.body)
+});
+
+//Login
+app.post('/login', (request, response) => {
+  const { username, password } = request.body;
+  const users = JSON.parse(fs.readFileSync('data/userData.json', 'utf-8'));
+
+  const user = users.find(user => user.username === username && user.password === password);
+
+  if (user) {
+    response.json({ message: true, user });
+    databaseLoginHistory.insert({message: true, username: username});
+  } else {
+    response.json({ message: false});
+    databaseLoginHistory.insert({message: false, username: username});
+  }
+});
+//Internal data check
+app.post('/intDataCheck', (request, response) => {
+  const userid = request.body.userID;
+  const userSSC = request.body.userSSC;
+  const users = JSON.parse(fs.readFileSync('data/userData.json', 'utf-8'));
+
+  const user = users.find(user => user.userid === userid && user.userSSC === userSSC);
+
+  if (user) {
+    response.json({ message: true , content: user});
+  } else {
+    response.json({ message: false});
+  }
 });
 
 function generateRandomCode(length) {

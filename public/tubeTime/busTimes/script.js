@@ -20,15 +20,11 @@ function onStartTemp() {
     document.getElementById("content").innerHTML= txt2;
 }
 
-    //Get Data
-    //const position = await getCurrentPosition();
-    //const lon = position.coords.longitude;
-    //const lat = position.coords.latitude;
 async function onStart() {
     const lon = document.getElementById("lon").value;
     const lat = document.getElementById("lat").value;
     console.log(lon, lat)
-    const response = await fetch("/tflBusPoints", {
+    const response = await fetch("/tfl/busPoints", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -106,7 +102,7 @@ async function seeTimes(send) {
     const id = send[0];
     const name = send[1];
     console.log(send)
-    const response = await fetch("/tflBusTimes", {
+    const response = await fetch("/tfl/busTimes", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
