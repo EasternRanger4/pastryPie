@@ -34,7 +34,7 @@ function alowAdmin() {
 }
 
 function displayCrads() {
-    const names = ["p_Ben.png","p_ESER.jpg","p_KYAN.jpg","p_NATHEN.jpg","p_SHASH.jpg", "p_TAMER.jpg", "p_THEO.jpg", "p_TYLER.jpg", "p_YAMI.jpg","p_YASIN.jpg"]
+    const names = ["p_BEN.png","p_ESER.jpg","P_KYAN.jpg","p_NATHEN.jpg","p_SHASH.jpg", "p_TAMER.jpg", "p_THEO.jpg", "p_TYLER.jpg", "p_YAMI.jpg","p_YASIN.jpg"]
     const people = ["Ben", "Eser", "Kyan", "Nathaniel", "Shash", "Tamer", "Theo", "Tyler", "Yami","Yasin"]
     txt1 = "";
     for (p in names) {

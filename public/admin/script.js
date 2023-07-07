@@ -81,7 +81,7 @@ async function setDisplay(display) {
         document.getElementById("content").innerHTML = txt2;
     } else if (display == "viewUser") {
         const type = "viewUser"
-        const responce = await fetch("/admin", {
+        const responce = await fetch("/admin/seeUser", {
             method: "POST",
             headers: {
             "Content-Type": "application/json ",
@@ -135,7 +135,7 @@ function displayData(data) {
 
 async function delUser(userid) {
     const type = "delUser"
-    const responce = await fetch("/admin", {
+    const responce = await fetch("/admin/delUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json ",
@@ -158,7 +158,7 @@ async function delUser(userid) {
 function editUser(user) {
     console.log(window.uData.content[user])
     txt5 = `<br>
-        <label for="userid">Name</label>
+        <label for="userid">User ID</label>
         <input id="userid" type="number" value="${window.uData.content[user].userid}"> <br>
         <label for="fname">Name</label>
         <input id="fname" type="text" value="${window.uData.content[user].fname}"> <br>
@@ -173,13 +173,13 @@ function editUser(user) {
         <label for="dob">Date of Birth</label>
         <input id="dob" type="date" value="${window.uData.content[user].dob}"> <br>
         <label for="clinetApri">Apri</label>
-        <input id="clinetApri" type="text" value="${window.uData.content[user].clinetApri}"> <br>
+        <input id="clinetApri" type="text" value="${window.uData.content[user].clientApri}"> <br><br>
         <button onclick="editUserTwo()">Submit</button>`
         document.getElementById("content").innerHTML = txt5;
 }
 
 async function editUserTwo() {
-    const userid = document.getElementById("fname").value;
+    const userid = document.getElementById("userid").value;
     const fname = document.getElementById("fname").value;
     const mname = document.getElementById("mname").value;
     const lname = document.getElementById("lname").value;
@@ -188,7 +188,7 @@ async function editUserTwo() {
     const clinetApri = document.getElementById("clinetApri").value;
     const dob = document.getElementById("dob").value;
     const admin = true;
-    const responce = await fetch("/admin", {
+    const responce = await fetch("/admin/editUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json ",
@@ -207,6 +207,12 @@ async function editUserTwo() {
       });
     const data = await responce.json();
     console.log(data);
+    if (data.message == true) {
+      alert("Updated User")
+      setDisplay('viewUser')
+    } else {
+      alert("Unable to update user")
+    }
 }
 async function addUser() {
     const fname = document.getElementById("fname").value;
@@ -215,7 +221,7 @@ async function addUser() {
     const password = document.getElementById("passwordd").value;
     const dob = document.getElementById("dob").value;
     const type = "addUser"
-    const responce = await fetch("/admin", {
+    const responce = await fetch("/admin/addUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json ",
