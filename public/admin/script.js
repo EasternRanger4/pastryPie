@@ -20,7 +20,7 @@ async function loginUser() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
   
-    const responce = await fetch("/login", {
+    const responce = await fetch("/login/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json ",

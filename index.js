@@ -5,11 +5,15 @@ var fs = require('fs');
 const { request } = require("http");
 app.use(express.json());
 require('dotenv').config()
+const nodemailer = require('nodemailer');
 
 //Requer api files 
 const cocktailRoutes = require('./apiRequests/cocktailRoutes');
 const tflRoutes = require('./apiRequests/tflRoutes');
 const adminRoutes = require('./apiRequests/admin');
+const loginRoutes = require('./apiRequests/loginRoutes');
+const updateUser = require('./apiRequests/updateUser');
+const externalRoutes = require('./apiRequests/externalRoutes');
 
 //Load Databases
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
@@ -25,60 +29,11 @@ pageViews.loadDatabase();
 app.use('/cocktails', cocktailRoutes);
 app.use('/tfl', tflRoutes);
 app.use('/admin', adminRoutes);
+app.use('/login', loginRoutes);
+app.use('/updateUser', updateUser);
+app.use('/external', externalRoutes);
 
-app.post("/updateUser", async (request, response) => {
-  try {
-    // Read the userdata.json file
-    const data = fs.readFileSync('data/userdata.json', 'utf8');
-    const userData = JSON.parse(data);
 
-    // Find the user based on the provided userid
-    const userIdToUpdate = request.body.userid;
-    const userToUpdate = userData.find(user => user.userid === userIdToUpdate);
-
-    if (request.body.admin == undefined) {
-      if (userToUpdate) {
-        // Update the user data with the provided values
-        userToUpdate.fname = request.body.fname;
-        userToUpdate.mname = request.body.mname;
-        userToUpdate.lname = request.body.lname;
-        userToUpdate.password = request.body.password;
-        userToUpdate.dob = request.body.dob;
-
-        // Save the updated data back to the file
-        fs.writeFileSync('data/userdata.json', JSON.stringify(userData, null, 2), 'utf8');
-
-        // Send a response indicating success
-        response.json({ message: true });
-      } else {
-        response.json({ message: false, error: 'User not found with the provided userid.' });
-      }
-    } else if (request.body.admin == true) {
-      if (userToUpdate) {
-        // Update the user data with the provided values
-        userToUpdate.fname = request.body.fname;
-        userToUpdate.mname = request.body.mname;
-        userToUpdate.lname = request.body.lname;
-        userToUpdate.password = request.body.password;
-        userToUpdate.username = request.body.username;
-        userToUpdate.dob = request.body.dob;
-        userToUpdate.userid = request.body.userid;
-        userToUpdate.clinetApri = request.body.clinetApri;
-
-        // Save the updated data back to the file
-        fs.writeFileSync('data/userdata.json', JSON.stringify(userData, null, 2), 'utf8');
-
-        // Send a response indicating success
-        response.json({ message: true });
-      } else {
-        response.json({ message: false, error: 'User not found with the provided userid.' });
-      }
-    }
-  } catch (error) {
-    console.error(error);
-    response.json({ message: false, error: 'An error occurred while updating the user data.' });
-  }
-});
 
 //Pins 
 app.post("/clinetPinCodes", async (request, responce) => {
@@ -124,35 +79,6 @@ app.post('/test', (request, response) => {
   console.log(request.body)
 });
 
-//Login
-app.post('/login', (request, response) => {
-  const { username, password } = request.body;
-  const users = JSON.parse(fs.readFileSync('data/userData.json', 'utf-8'));
-
-  const user = users.find(user => user.username === username && user.password === password);
-
-  if (user) {
-    response.json({ message: true, user });
-    databaseLoginHistory.insert({message: true, username: username});
-  } else {
-    response.json({ message: false});
-    databaseLoginHistory.insert({message: false, username: username});
-  }
-});
-//Internal data check
-app.post('/intDataCheck', (request, response) => {
-  const userid = request.body.userID;
-  const userSSC = request.body.userSSC;
-  const users = JSON.parse(fs.readFileSync('data/userData.json', 'utf-8'));
-
-  const user = users.find(user => user.userid === userid && user.userSSC === userSSC);
-
-  if (user) {
-    response.json({ message: true , content: user});
-  } else {
-    response.json({ message: false});
-  }
-});
 
 let port = 3000;
 app.use(express.static("public"));

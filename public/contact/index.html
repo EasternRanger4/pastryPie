@@ -6,6 +6,7 @@
     <title>Contact</title>
     <link rel="icon" type="image/png" href="../favicon.png">
     <link href="../universal.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
     <style>
     </style>
 </head>
@@ -19,9 +20,24 @@
         </div>
     </header>
     <boddy>
-        **BODDY*
+        <br>
+        <center><h1>Send Message</h1></center>
+        <div id="wrapper">
+            <label for="subject">Subject</label>
+            <input name="subject" id="subject" type="text"> <br>
+            <br>
+            <label for="email">Email Adress</label>
+            <input name="email" id="email" type="email"> <br>
+            <br>
+            <label for="text">Text</label>
+            <textarea id="text" name="text"></textarea> <br>
+            <br>
+            <button onclick="sendEmail()">Send</button>
+        </div>
     </boddy>
+    <br> <br> <div id="buffer"></div>
     <footer id="footer">
     </footer>
     <script src="../universal.js"></script>
+    <script src="script.js"></script>
 </body>

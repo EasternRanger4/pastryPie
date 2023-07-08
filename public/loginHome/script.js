@@ -38,8 +38,7 @@ async function dataCheck() {
     document.getElementById("content").innerHTML= content;
     const userID = localStorage.getItem("userID")
     const userSSC = localStorage.getItem("userSSC")
-    console.log(userID, userSSC)
-    const responce = await fetch("/intDataCheck", {
+    const responce = await fetch("/login/intDataCheck", {
         method: "POST",
         headers: {
             "Content-Type": "application/json ",
@@ -50,7 +49,6 @@ async function dataCheck() {
         }),
     });
     const data = await responce.json();
-    console.log(data);
     if (data.message == true) {
         const txt0 = `Hello! ${data.content.fname}`
         document.getElementById("welcome").innerHTML= txt0;
