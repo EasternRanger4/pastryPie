@@ -6,6 +6,7 @@ const { request } = require("http");
 app.use(express.json());
 require('dotenv').config()
 const nodemailer = require('nodemailer');
+const fsN = require('fs-extra');
 
 //Requer api files 
 const cocktailRoutes = require('./apiRequests/cocktailRoutes');
@@ -14,11 +15,12 @@ const adminRoutes = require('./apiRequests/admin');
 const loginRoutes = require('./apiRequests/loginRoutes');
 const updateUser = require('./apiRequests/updateUser');
 const externalRoutes = require('./apiRequests/externalRoutes');
+const pinCodes = require('./apiRequests/pinCodes');
 
 //Load Databases
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
 databaseLoginHistory.loadDatabase();
-const cocktailMenu = new Datastore("data/client/cocktails/cocktails.db");
+const cocktailMenu = new Datastore("data/client/cocktails/cocktailMenu.db");
 cocktailMenu.loadDatabase();
 const cocktailOrders = new Datastore("data/client/cocktails/cocktailOrders.db");
 cocktailOrders.loadDatabase();
@@ -32,16 +34,10 @@ app.use('/admin', adminRoutes);
 app.use('/login', loginRoutes);
 app.use('/updateUser', updateUser);
 app.use('/external', externalRoutes);
+app.use('/pinCodes', pinCodes);
 
 
 
-//Pins 
-app.post("/clinetPinCodes", async (request, responce) => {
-  if (request.body.type = "NT") {
-    const toSend = process.env.FCADMINPIN
-    responce.json({ message: true, toSend});
-  } 
-});
 
 app.post('/geocode', async (req, res) => {
   try {

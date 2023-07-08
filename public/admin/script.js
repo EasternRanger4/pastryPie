@@ -93,8 +93,47 @@ async function setDisplay(display) {
         const data = await responce.json();
         console.log(data);
         displayData(data)
+    } else if  (display == "editCodes"){
+      const type = ""
+      const responce = await fetch("/pinCodes/getCodes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json ",
+        },
+        body: JSON.stringify({
+        type
+        }),
+      });
+      const data = await responce.json();
+      const tableDefault = `
+      <table>
+        <thead>
+          <tr>
+            <th>Owner Name</th>
+            <th>Codename</th>
+            <th>Type</th>
+            <th>Pin</th>
+            <th>Actions</th>              
+          </tr>
+        </thead>
+        <tbody id="tableData"></tbody>
+      </table>`;
+  
+    document.getElementById("content").innerHTML = tableDefault;
+  
+    var tableData = "";
+    for (user in data.content) {
+      tableData += `<tr>
+        <td>${data.content[user].client_name}</td>
+        <td>${data.content[user].clinet_codename}</td>
+        <td>${data.content[user].type}</td>
+        <td>${data.content[user].pin}</td>
+        <td><button onclick="editCode('${data.content[user].array}')">Edit</button></td>
+      </tr>`;
     }
-}
+    document.getElementById("tableData").innerHTML = tableData;
+    }
+  }
 
 function displayData(data) {
     const tableDefault = `
@@ -250,4 +289,45 @@ async function addUser() {
     } else {
         alert(data)
     }
+}
+
+async function editCode(array) {
+  const type = ""
+  const responce = await fetch("/pinCodes/getCodes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json ",
+    },
+    body: JSON.stringify({
+    type
+    }),
+  });
+  const data = await responce.json();
+  const txt6 = `
+  <h1>${data.content[array].client_name} - ${data.content[array].clinet_codename} </h1>
+  <label for="pin">${data.content[array].type} - Pin: </label>
+  <input name="pin" type="number" id="pin" value="${data.content[array].pin}">
+  <button onclick="sumbmitPin('${array}')">Sumbit</button>`
+  document.getElementById("content").innerHTML= txt6;
+}
+
+async function sumbmitPin(array) {
+  const pin = document.getElementById("pin").value;
+  const responce = await fetch("/pinCodes/updatePin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json ",
+    },
+    body: JSON.stringify({
+      array, 
+      pin
+    }),
+  });
+  const data = await responce.json(); 
+  if (data.message == true) {
+    alert("Updated Code")
+    setDisplay('editCodes')
+  } else {
+    alert("Error")
+  }
 }

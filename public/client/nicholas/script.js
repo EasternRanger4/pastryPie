@@ -1,26 +1,39 @@
 async function redTrust(n) {
     if (n == "a") {
         const userAdminPin = prompt("Admin Pin")
-        const type = "NT"
-        const responce = await fetch("/clinetPinCodes", {
+        const type = "displayCard"
+        const responce = await fetch("/pinCodes/NT", {
             method: "POST",
             headers: {
               "Content-Type": "application/json ",
             },
             body: JSON.stringify({
-              type
+              type,
+              userAdminPin
             }),
           });
         const data = await responce.json();
         console.log(data)
-        if (data.toSend == userAdminPin) {
+        if (data.message == true) {
             alowAdmin()
         } else {
             alert("Incorect Pin")
+            document.getElementById("content").innerHTML= "";
         }
     } else if (n == "fc") {
-        const userPin = prompt("View Codes")
-        if (userPin == "123") {
+        const pin = prompt("View Codes")
+        const responce = await fetch("/pinCodes/NTa", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json ",
+            },
+            body: JSON.stringify({
+              pin
+            }),
+          });
+        const data = await responce.json();
+        console.log(data)
+        if (data.message == true) {
             displayCrads()
         } else {
             alert("Incorect Pin")
