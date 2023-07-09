@@ -17,7 +17,9 @@ router.post('/notifyAdmin', async (request, response) => {
     });
     
     const sub = `Contact - ${request.body.subject}`
-    const txt = `Email:${request.body.email} <br> Subject: ${request.body.subject}`
+    const txt = `You have a new message from the contact page on your website 
+    Email: ${request.body.email} 
+    Subject: ${request.body.txt}`
     // Define the email options
     const mailOptions = {
         from: 'kamran_tailor@hotmail.com',

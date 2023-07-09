@@ -20,12 +20,14 @@ const pinCodes = require('./apiRequests/pinCodes');
 //Load Databases
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
 databaseLoginHistory.loadDatabase();
-const cocktailMenu = new Datastore("data/client/cocktails/cocktailMenu.db");
+const cocktailMenu = new Datastore("data/client/cocktails/cocktails.db");
 cocktailMenu.loadDatabase();
 const cocktailOrders = new Datastore("data/client/cocktails/cocktailOrders.db");
 cocktailOrders.loadDatabase();
 const pageViews = new Datastore("data/history/pageViews.db");
 pageViews.loadDatabase();
+const cocktailHistory = new Datastore("data/client/cocktails/cocktailHistory.db");
+cocktailHistory.loadDatabase();
 
 //APP.USE
 app.use('/cocktails', cocktailRoutes);
