@@ -16,6 +16,8 @@ const loginRoutes = require('./apiRequests/loginRoutes');
 const updateUser = require('./apiRequests/updateUser');
 const externalRoutes = require('./apiRequests/externalRoutes');
 const pinCodes = require('./apiRequests/pinCodes');
+const pokemon = require('./apiRequests/pokemon.js');
+const fortnite = require('./apiRequests/fortnite.js');
 
 //Load Databases
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
@@ -37,6 +39,8 @@ app.use('/login', loginRoutes);
 app.use('/updateUser', updateUser);
 app.use('/external', externalRoutes);
 app.use('/pinCodes', pinCodes);
+app.use('/pokemon', pokemon);
+app.use('/fortnite', fortnite);
 
 
 

@@ -1,3 +1,6 @@
+const names = ["p_BEN.png","p_ESER.jpg","P_KYAN.jpg","p_NATHEN.jpg","p_SHASH.jpg", "p_TAMER.jpg", "p_THEO.jpg", "p_TYLER.jpg", "p_YAMI.jpg","p_YASIN.jpg"]
+const people = ["Ben", "Eser", "Kyan", "Nathaniel", "Shash", "Tamer", "Theo", "Tyler", "Yami","Yasin"]
+
 async function redTrust(n) {
     if (n == "a") {
         const userAdminPin = prompt("Admin Pin")
@@ -42,13 +45,27 @@ async function redTrust(n) {
 }
 
 function alowAdmin() {
-    txt0 = `Admin Content`;
-    document.getElementById("content").innerHTML= txt0;
+  var txt0 = `<table> 
+      <tr> 
+        <td>Array One</td> 
+        <td>Array Two</td>
+      </tr>
+      <tr id="tableData"></tr>
+    </table>`;
+    document.getElementById("content").innerHTML = txt0;
+
+    var txt1 = "";
+    for (var i = 0; i < names.length; i++) {
+      txt1 += `<tr>
+        <td>${people[i]}</td>
+        <td>${names[i]}</td>
+      </tr>`;
+    }
+    document.getElementById("tableData").innerHTML = txt1;
+
 }
 
 function displayCrads() {
-    const names = ["p_BEN.png","p_ESER.jpg","P_KYAN.jpg","p_NATHEN.jpg","p_SHASH.jpg", "p_TAMER.jpg", "p_THEO.jpg", "p_TYLER.jpg", "p_YAMI.jpg","p_YASIN.jpg"]
-    const people = ["Ben", "Eser", "Kyan", "Nathaniel", "Shash", "Tamer", "Theo", "Tyler", "Yami","Yasin"]
     txt1 = "";
     for (p in names) {
         console.log(names[p])

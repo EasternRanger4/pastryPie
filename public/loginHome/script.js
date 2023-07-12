@@ -1,4 +1,5 @@
-const content = `<div id="welcome"></div>
+const content = `<div id="content">
+<div id="welcome"></div>
 Click on a service below to get started! <br>
 <br>
 <div id="tubeTime" class="service" onclick="tubeTime()"> 
@@ -8,11 +9,20 @@ Click on a service below to get started! <br>
 <div id="orderSessions" class="service" onclick="orderSessions()"> 
     <div class="serviceHead" id="osHead" >Menu Sessions</div>
     <div class="serviceContent" id="osConnt"> If you have a virtual session code for a menu you can access it here. </div>
+</div>
+<div id="orderSessions" class="service" onclick="gaming()"> 
+    <div class="serviceHead" id="ggHead" >The Gaming Gang</div>
+    <div class="serviceContent" id="ggConnt">Get all the information about your favorite games! </div>
+</div>
+<div id="space" class="service" onclick="space()"> 
+    <div class="serviceHead" id="sHead" >Space</div>
+    <div class="serviceContent" id="ggConnt">View lots of fun data from Outer Space!</div>
+</div>
+<div id="other" class="service" onclick="other()"> 
+    <div class="serviceHead" id="oHead" >Other</div>
+    <div class="serviceContent" id="ggConnt">View All other projects</div>
+</div>
 </div>`;
-const button = `<br> <button onclick="logout()">Logout</button>
-<span id="myAccount"></span>
-<button onclick="myAccount()">My Account</button>
-<span id="apri"></span>`;
 
 function logout() {
     localStorage.clear();
@@ -21,6 +31,18 @@ function logout() {
 
 function tubeTime() {
     window.location = "/tubeTime";
+}
+
+function gaming() {
+    window.location = "/gaming"
+}
+
+function other() {
+    window.location = "/other"
+}
+
+function space() {
+    window.location = "/space"
 }
 
 function orderSessions() {

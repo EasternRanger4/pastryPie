@@ -1,7 +1,13 @@
 const express = require("express");
 const fs = require('fs');
 const { request } = require("http");
+const Datastore = require('nedb');
 const router = express.Router();
+
+const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
+databaseLoginHistory.loadDatabase();
+const pageViews = new Datastore("data/history/pageViews.db");
+pageViews.loadDatabase();
 
 router.post('/addUser', async (request, response) => {
     const fname = request.body.fname; // First Name
@@ -148,6 +154,46 @@ router.post('/editUser', async (request, response) => {
             response.json({message: false, content: "noUser found"})
         }
       });
+});
+
+router.post('/viewDatabases', (request, response) => {
+  const userid = request.body.userID;
+  const userSSC = request.body.userSSC;
+  const users = JSON.parse(fs.readFileSync('data/userData.json', 'utf-8'));
+
+  const user = users.find(user => user.userid === userid && user.userSSC === userSSC);
+
+  if (!user) {
+    response.json({ message: false, content: "incorrect verification" });
+    return;
+  }
+
+  if (user.clientApri === "false") {
+    response.json({ message: false, content: "no permissions" });
+    return;
+  } else if (user.clientApri === "admin") {
+    const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
+    databaseLoginHistory.loadDatabase();
+
+    const pageViews = new Datastore("data/history/pageViews.db");
+    pageViews.loadDatabase();
+
+    databaseLoginHistory.find({}, (err, loginData) => {
+      if (err) {
+        response.json({ message: false, content: "error locating loginHistory database" });
+        return;
+      }
+
+      pageViews.find({}, (err, pageViewData) => {
+        if (err) {
+          response.json({ message: false, content: "error locating pageViews database" });
+          return;
+        }
+
+        response.json({ message: true, content: loginData, contenttwo: pageViewData });
+      });
+    });
+  }
 });
 
 function generateRandomCode(length) {

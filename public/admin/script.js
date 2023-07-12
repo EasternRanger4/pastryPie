@@ -52,7 +52,7 @@ function adminHomepage(clinetApri) {
         <button onclick="setDisplay('addUser')">Add User</button>
         <button onclick="setDisplay('viewUser')">View Users</button>
         <button onclick="setDisplay('editCodes')">Edit Codes</button>
-        <button onclick="setDisplay('viewDatabases')">View Databases</button>
+        <button onclick="getDatabases()">View Databases</button>
         <button onclick="setDisplay('logout')">Logout</button>`
         document.getElementById("content").innerHTML = '';
         document.getElementById("button").innerHTML= txt1;
@@ -309,6 +309,30 @@ async function editCode(array) {
   <input name="pin" type="number" id="pin" value="${data.content[array].pin}">
   <button onclick="sumbmitPin('${array}')">Sumbit</button>`
   document.getElementById("content").innerHTML= txt6;
+}
+
+async function getDatabases() {
+  const userID = localStorage.getItem("userID")
+  const userSSC = localStorage.getItem("userSSC")
+  const responce = await fetch("/admin/viewDatabases", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json ",
+    },
+    body: JSON.stringify({
+      userID,
+      userSSC
+    }),
+  });
+  const data = await responce.json();
+  console.log(data)
+  if (data.message == false) {
+    alert("Error")
+  } else if (data.message == true) { //contenttwo
+    const txt7 = `<br>
+    <button onclick="setDataCont('${data.content}')>Login History</button> <button onclick="setDataLog('${data.contenttow}')>Login History</button>"`
+    document.getElementById("content").innerHTML= txt7;
+  }
 }
 
 async function sumbmitPin(array) {

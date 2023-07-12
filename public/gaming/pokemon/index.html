@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <!--Meta Data-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--User Head Data-->
+    <title>Pokémon!!</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link href="../../universal.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1 onclick="home()">Kamran Industries</h1>
+            <div class="banner-links">
+                <span id="linksLL"></span>
+            </div>
+        </div>
+    </header>
+    <boddy>
+        <br>
+        <div id="buttons">
+            <span id="viewAll"></span>
+            <input type="text" id="searchInput" placeholder="Enter Pokémon name">
+            <button onclick="search()">Search</button>
+
+            <span id="bac"><button onclick="bac()">Back</button></span> <span id="fow"><button onclick="fow()">Next</button></span> 
+        </div>
+        <div id="content"><div class="loader"></div> 
+        </div>
+
+    </boddy>
+    <br> <br> <br> <br> <div id="buffer"></div> <br> <br><br> <br>
+    <footer id="footer">
+    </footer>
+    <script src="../../universal.js"></script>
+    <script src="../../loginCheck.js"></script>
+    <script src="script.js"></script>
+</body>

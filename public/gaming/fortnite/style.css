@@ -1,0 +1,8 @@
+.icon {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: fit-content;
+    display: inline-block; /* or display: inline-flex; */
+    margin-right: 10px; /* Optional: Add spacing between Pokémon */
+  }

@@ -66,6 +66,23 @@ button:active {
   background-color: #373F51;
   color: white;
 }
+ 
+#ggHead {
+  background-color: #F21B3F;
+}
+
+#sHead {
+  background-color: #B14AED;
+}
+
+#oHead {
+  background-color: #8E936D;
+}
+
+#ggConnt {
+  background-color: #373F51;
+  color: white;
+}
 
 boddy {
   background-color: #f2f2f2;

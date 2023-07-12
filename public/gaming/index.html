@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <!--Meta Data-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--User Head Data-->
+    <title>The Gaming Gang</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link href="../universal.css" rel="stylesheet" type="text/css" />
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1 onclick="home()">Kamran Industries</h1>
+            <div class="banner-links">
+                <span id="linksLL"></span>
+            </div>
+        </div>
+    </header>
+    <boddy>
+        <h1>The Gaming Gang</h1>
+        <button onclick="pokemon()">Pokemon</button>
+        <button onclick="fortnite()">Fortnite</button>
+    </boddy>
+    <br> <br> <div id="buffer"></div>
+    <footer id="footer">
+    </footer>
+    <script>
+        function pokemon() {
+            window.location = "./pokemon"
+        }
+        function fortnite() {
+            window.location = "./fortnite"
+        }
+    </script>
+    <script src="../universal.js"></script>
+    <script src="../loginCheck.js"></script>
+</body>
