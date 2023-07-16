@@ -111,7 +111,6 @@ router.post('/busTimes', async (request, response) => {
   const url = `https://api.tfl.gov.uk/StopPoint/${id}/Arrivals?app_id=${tflKey}`;
   const tflResponse = await fetch(url);
   const resData = await tflResponse.json();
-  console.log(resData)
   response.json({ message: true, resData });
 });
 

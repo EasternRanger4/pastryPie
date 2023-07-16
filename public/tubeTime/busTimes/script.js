@@ -1,41 +1,32 @@
-async function getCurrentPosition() {
+async function getUserLocation() {
     return new Promise((resolve, reject) => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(resolve, reject);
-        } else {
-            reject(new Error('Geolocation is not supported'));
-        }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => resolve({ latitude: position.coords.latitude, longitude: position.coords.longitude }),
+          error => reject(error)
+        );
+      } else {
+        reject("Geolocation is not supported by this browser.");
+      }
     });
-}
-
-function onStartTemp() {
-    const txt2 = `            AS THIS WEBSITE IS NOT SECURE WE DO NOT HAVE ABILATYS TO USE GEOLOCATION <br>
-    To use this service please enter your lon and lat <br>
-    The location has to be within the Greater London Area <br>
-    Lat: <input type="text" id="lat"> <br>            
-    Lon: <input type="text" id="lon"> <br>           
-    <br>
-    <button onclick="onStart()">Submit</button>`
-    document.getElementById("button").innerHTML= "";
-    document.getElementById("content").innerHTML= txt2;
-}
+  }
 
 async function onStart() {
-    const lon = document.getElementById("lon").value;
-    const lat = document.getElementById("lat").value;
-    console.log(lon, lat)
+    const { latitude, longitude } = await getUserLocation();
+    console.log(latitude, longitude);
     const response = await fetch("/tfl/busPoints", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            lon,
-            lat
+          lon: longitude,
+          lat: latitude,
         }),
-    });
-    const data = await response.json();
-    console.log(data);
+      });
+
+      const data = await response.json();
+      console.log(data);
     
     //Set Map
     const content = `<h1> All Bus Stops Near You </h1> <div id="map"><br></div> <div id="content-c"></div>`
@@ -192,5 +183,5 @@ function sortTable(n) {
     }
   }
   
-//onStart();
+onStart();
   
