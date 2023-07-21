@@ -107,9 +107,9 @@ function myAccount() {
 function myAccountOne() {
     const pass = document.getElementById("password").value;
     if (pass == userData.password) {
-        document.getElementById("button").innerHTML= button;
+        document.getElementById("button").innerHTML= "";
         document.getElementById("content").innerHTML= "";
-        document.getElementById("myAccount").innerHTML= '<button onclick="back()">Back</button';
+        document.getElementById("myAccount").innerHTML= '<br> <button onclick="back()">Back</button';
         document.getElementById("afterContent").innerHTML= "";
         const txt2 = `<br>
         <label for="fname">Name</label>

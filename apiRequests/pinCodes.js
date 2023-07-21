@@ -54,6 +54,27 @@ router.post("/NT", async (request, responce) => {
 });
 
 router.post("/NTa", async (request, responce) => {
+  fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading file:', err);
+        return;
+      }
+      try {
+        const jsonData = JSON.parse(data);
+        if (request.body.type = "NTa") {
+          if (jsonData[1].pin == request.body.userAdminPin) {
+            responce.json({ message: true});
+          } else {
+            responce.json({ message: false});
+          }
+        }
+      } catch (err) {
+        console.error('Error parsing JSON:', err);
+      }
+  }); 
+});
+
+router.post("/NTa", async (request, responce) => {
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
           console.error('Error reading file:', err);

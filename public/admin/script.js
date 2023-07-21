@@ -306,7 +306,7 @@ async function editCode(array) {
   const txt6 = `
   <h1>${data.content[array].client_name} - ${data.content[array].clinet_codename} </h1>
   <label for="pin">${data.content[array].type} - Pin: </label>
-  <input name="pin" type="number" id="pin" value="${data.content[array].pin}">
+  <input name="pin" id="pin" value="${data.content[array].pin}">
   <button onclick="sumbmitPin('${array}')">Sumbit</button>`
   document.getElementById("content").innerHTML= txt6;
 }

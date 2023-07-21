@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#terminal {
+    width: 400px;
+    height: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f2f2f2;
+    overflow-y: scroll;
+}
+
+#commandInput {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+}
+
+#outputArea {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #fff;
+    font-size: 14px;
+    white-space: pre-wrap;
+}

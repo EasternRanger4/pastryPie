@@ -2,13 +2,10 @@ const express = require("express");
 const fs = require('fs');
 const Datastore = require('nedb');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
 databaseLoginHistory.loadDatabase();
-const cocktailMenu = new Datastore("data/client/cocktails/cocktails.db");
-cocktailMenu.loadDatabase();
-const cocktailOrders = new Datastore("data/client/cocktails/cocktailOrders.db");
-cocktailOrders.loadDatabase();
 const pageViews = new Datastore("data/history/pageViews.db");
 pageViews.loadDatabase();
 
