@@ -15,62 +15,43 @@
     <header>
         <div class="banner">
             <h1 onclick="home()">Kamran Industries</h1>
+            <div class="menu-btn" onclick="toggleMenu()">☰</div>
+            <div class="menu-btn2" onclick="toggleMenu()">X</div>
             <div class="banner-links">
                 <span id="linksLL"></span>
             </div>
         </div>
+        <div id="contentToToggle" class="dropdown-content"> </div>
     </header>
     <boddy>
         <br>
+        <div id="button"><button onclick="admin()">Admin</button> <button onclick="trackOrderId()">Track Order</button></div> <br>
         <div id="content">
-            <button onclick="admin()">Admin</button>
+
+            <form id="orderForm">
+                <label for="name">Name:*</label>
+                <input type="text" id="name" name="name" required>
             
-            <div id="container1">
-                <div class="container1">
-                <div class="menu">
-
-                    <div>
-                        <h2 class="menu-group-heading">
-                            Martinis
-                        </h2>
-                        <div id="Martinis" class="menu-group">
-                    </div>
-
-                    <div>
-                        </div>
-                        <h2 class="menu-group-heading">
-                            Sours
-                        </h2>
-                        <div id="sours" class="menu-group">
-                        </div>
-                    </div>
-
-                    <div>
-                        <h2 class="menu-group-heading">
-                            Tequila
-                        </h2>
-                        <div id="tequila" class="menu-group">
-                        </div>
-                    </div>
-
-                    <div>
-                        <h2 class="menu-group-heading">
-                            Champagne Cocktails
-                        </h2>
-                        <div id="champ" class="menu-group">
-                        </div>
-                    </div>
-
-                    <div>
-                        <h2 class="menu-group-heading">
-                            More...
-                        </h2>
-                        <div id="more" class="menu-group">
-                        </div>
-                    </div>
-
-            </div>
+                <label for="email">Email:*</label>
+                <input type="email" id="email" name="email" required>
             
+                <label for="milk">Select Milk:*</label>
+                <select id="milk" name="milk" required>
+                    <option value="Regular Milk">Regular Milk</option>
+                    <option value="Coconut Milk">Coconut Milk</option>
+                    <option value="Lactose Free">Lactose Free</option>
+                </select>
+            
+                <label for="sugar" requied>Sugar (in teaspoons):*</label>
+                <input type="number" id="sugar" name="sugar" min="0" max="5" step="0.5" required>
+            
+                <label for="orderNotes">Order Notes:</label>
+                <textarea id="orderNotes" name="orderNotes" rows="4"></textarea>
+
+                <div id="error" style="color: red;"></div>
+                <button type="button" onclick="submitOrder()">Submit Order</button>
+            </form>
+
             </div>
              </div>
         </div>

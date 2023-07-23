@@ -1,106 +1,165 @@
+@media (min-width: 769px) {
+  .menu-btn {
+    display: none; /* This will hide the element on larger screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-btn {
+    position: fixed;
+    top: 40px;
+    right: 30px; /* Adjust this value as needed to control the distance from the right edge */
+    transform: translateY(-50%);
+    z-index: 9999; /* Adjust the z-index if needed to make sure the button is on top of other elements */
+  }
+  #linksLL {
+    display: none; /* This will hide the element on small screens */
+  }
+}
+
+.menu-btn {
+  font-size: 30px;
+}
+.menu-btn2 {
+  position: fixed;
+    top: 40px;
+    right: 30px; /* Adjust this value as needed to control the distance from the right edge */
+    transform: translateY(-50%);
+    z-index: 9999; /* Adjust the z-index if needed to make sure the button is on top of other elements */
+  display: none; 
+  font-size: 30px;
+}
+
+.menu-links a {
+  display: block;
+  margin-bottom: 10px;
+  color: #fff;
+  margin-left: 10px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+
+
+#contentToToggle {
+  display: flex;
+  justify-content: flex-end;
+  /* Other styling properties for the content */
+  background-color: #333;
+  padding: 10px;
+  display: none; /* The content will be hidden by default */
+  position: absolute; /* or position: fixed; */
+  top: 80px; /* Position it at the top of the containing element */
+  right: 10px; /* Position it at the right of the containing element */
+  z-index: 1; /* Set a higher z-index to make it appear on top of other elements */
+  border-radius: 10px;
+}
+
+
 .banner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  width: 95%;
+  padding: 20px;
 }
 
 .banner h1 {
-    margin: 0;
-    font-size: 24px;
+  margin: 0;
+  font-size: 24px;
 }
 
 .banner-links {
-    display: flex;
+  display: flex;
 }
 
 .banner-links a {
-    color: #fff;
-    margin-left: 10px;
-    text-decoration: none;
+  color: #fff;
+  margin-left: 10px;
+  text-decoration: none;
 }
 
 body {
-    margin: 5px;
-    padding-bottom: 60px; /* Adjust the value to match the footer height */
-    font-family: sans-serif;
+  margin: 5px;
+  padding-bottom: 60px; /* Adjust the value to match the footer height */
+  font-family: sans-serif;
 }
 
 .page-container {
-    min-height: calc(100vh - 60px); /* Adjust the value to match the footer height */
-    padding: 20px;
+  min-height: calc(100vh - 60px); /* Adjust the value to match the footer height */
+  padding: 20px;
 }
 
 /* CSS styles for the footer */
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
 
 table {
-    border-collapse: collapse;
-  }
-  
-  table th, table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  table th {
-    background-color: #f2f2f2;
-  }
-  
-  table tr:hover {
-    background-color: #f5f5f5;
-  }
-  
-  table td {
-    vertical-align: middle;
-  }
-  
-  button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  button:active {
-    background-color: #3e8e41;
-  }
+  border-collapse: collapse;
+}
 
-  .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+table th, table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #f5f5f5;
+}
+
+table td {
+  vertical-align: middle;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:active {
+  background-color: #3e8e41;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

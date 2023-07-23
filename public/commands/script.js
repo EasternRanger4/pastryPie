@@ -7,7 +7,7 @@ const commandMapping = {
     "lls": linkServer,
     // Add more custom commands here
   };
-  
+
   // Get input and output elements
   const commandInput = document.getElementById("commandInput");
   const outputArea = document.getElementById("outputArea");

@@ -52,8 +52,9 @@ function adminHomepage(clinetApri) {
         <button onclick="setDisplay('addUser')">Add User</button>
         <button onclick="setDisplay('viewUser')">View Users</button>
         <button onclick="setDisplay('editCodes')">Edit Codes</button>
-        <button onclick="getDatabases()">View Databases</button>
-        <button onclick="setDisplay('logout')">Logout</button>`
+        <button onclick="news()">News</button>
+        <button onclick="updates()">Updates</button>
+        <button onclick="logout()">Logout</button>`
         document.getElementById("content").innerHTML = '';
         document.getElementById("button").innerHTML= txt1;
     } else {

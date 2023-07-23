@@ -1,0 +1,26 @@
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, select, textarea {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}

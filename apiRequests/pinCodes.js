@@ -95,6 +95,48 @@ router.post("/NTa", async (request, responce) => {
     }); 
 });
 
+router.post("/CM", async (request, responce) => {
+  fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading file:', err);
+        return;
+      }
+      try {
+        const jsonData = JSON.parse(data);
+        if (request.body.type = "CM") {
+          if (jsonData[4].pin == request.body.pin) {
+            responce.json({ message: true});
+          } else {
+            responce.json({ message: false});
+          }
+        }
+      } catch (err) {
+        console.error('Error parsing JSON:', err);
+      }
+  }); 
+});
+
+router.post("/USA", async (request, responce) => {
+  fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading file:', err);
+        return;
+      }
+      try {
+        const jsonData = JSON.parse(data);
+        if (request.body.type = "USA") {
+          if (jsonData[6].pin == request.body.pin) {
+            responce.json({ message: true});
+          } else {
+            responce.json({ message: false});
+          }
+        }
+      } catch (err) {
+        console.error('Error parsing JSON:', err);
+      }
+  }); 
+});
+
 router.post("/getCodes", (request, responce) => {
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {

@@ -1,12 +1,15 @@
 const express = require("express");
 const Datastore = require('nedb');
-const app = express();
-var fs = require('fs');
 const { request } = require("http");
-app.use(express.json());
+var fs = require('fs');
+const https = require('https');
 require('dotenv').config()
 const nodemailer = require('nodemailer');
 const fsN = require('fs-extra');
+const bodyParser = require('body-parser');
+
+const app = express();
+app.use(express.json());
 
 //Requer api files 
 const cocktailRoutes = require('./apiRequests/cocktailRoutes');
@@ -19,7 +22,8 @@ const pinCodes = require('./apiRequests/pinCodes');
 const pokemon = require('./apiRequests/pokemon.js');
 const fortnite = require('./apiRequests/fortnite.js');
 const space = require('./apiRequests/space.js');
-const esLogin = require('./apiRequests/esLogin.js');
+const coffee = require('./apiRequests/coffee.js');
+const pages = require('./apiRequests/pageUpdate.js');
 
 //Load Databases
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
@@ -38,7 +42,8 @@ app.use('/pinCodes', pinCodes);
 app.use('/pokemon', pokemon);
 app.use('/fortnite', fortnite);
 app.use('/space', space);
-app.use('/esLogin', esLogin);
+app.use('/coffee', coffee);
+app.use('/pages', pages);
 
 
 
