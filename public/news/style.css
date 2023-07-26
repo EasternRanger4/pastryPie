@@ -1,0 +1,54 @@
+/* Styles for the image container */
+.grid-container {
+    overflow: hidden; /* Clear the floats */
+  }
+
+
+.image-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    float: left;
+    margin-right: 10px; /* Adjust the margin between items as needed */
+  }
+  
+  /* Styles for the image */
+  .image {
+    width: 200px;
+    height: 200px
+  }
+  
+  /* Styles for the overlay container */
+  .image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: #fff; /* Text color for the title and content */
+    padding: 5px;
+    opacity: 0; /* Hide the overlay initially */
+    transition: opacity 0.3s; /* Add a smooth transition on hover */
+  }
+  
+  /* Styles for the title */
+  .image-title {
+    font-weight: bold;
+  }
+  
+  /* Styles for the content (hidden initially) */
+  .image-content {
+    display: none;
+  }
+  
+  /* Show the content on hover */
+  .image-container:hover .image-overlay {
+    opacity: 1;
+  }
+  
+  /* Show the content when hovering the title area */
+  .image-container:hover .image-content {
+    display: block;
+  }
+  

@@ -75,6 +75,7 @@ async function dataCheck() {
         }),
     });
     const data = await responce.json();
+    console.log(data)
     if (data.message == true) {
         const txt0 = `Hello! ${data.content.fname}`
         document.getElementById("welcome").innerHTML= txt0;
@@ -108,9 +109,21 @@ function myAccount() {
     document.getElementById("content").innerHTML= txt1
 }
 
-function myAccountOne() {
-    const pass = document.getElementById("password").value;
-    if (pass == userData.password) {
+async function myAccountOne() {
+    const password = document.getElementById("password").value;
+    const username = userData.username;
+    const responce = await fetch("/login/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json ",
+        },
+        body: JSON.stringify({
+            password, 
+            username
+        }),
+    });
+    const data = await responce.json()
+    if (data.message == true) {
         document.getElementById("button").innerHTML= "";
         document.getElementById("content").innerHTML= "";
         document.getElementById("myAccount").innerHTML= '<br> <button onclick="back()">Back</button';
@@ -140,36 +153,41 @@ async function myAccountTwo() {
     const lname = document.getElementById("lname").value;
     const password = document.getElementById("passwordd").value;
     const dob = document.getElementById("dob").value;
-    const clinetApri = userData.clinetApri;
-    const userSSC = userData.userSSC;
-    const userid = userData.userid;
-    const username = userData.username;
-    const responce = await fetch("/updateUser", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json ",
-        },
-        body: JSON.stringify({
-            userid,
-            userSSC,
-            username,
-            password,
-            clinetApri,
-            dob,
-            lname,
-            mname,
-            fname
-        }),
-    });
-    const data = await responce.json();
-    console.log(data)
-    if (data.message == true) {
-        alert("Updated Your Data")
-        document.getElementById("afterContent").innerHTML= "";
-        dataCheck()
-    } else (
-        alert(data.error)
-    )
+
+    if (password == "") {
+        alert("Please enter a password")
+    } else {
+        const clinetApri = userData.clinetApri;
+        const userSSC = userData.userSSC;
+        const userid = userData.userid;
+        const username = userData.username;
+        const responce = await fetch("/updateUser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json ",
+            },
+            body: JSON.stringify({
+                userid,
+                userSSC,
+                username,
+                password,
+                clinetApri,
+                dob,
+                lname,
+                mname,
+                fname
+            }),
+        });
+        const data = await responce.json();
+        console.log(data)
+        if (data.message == true) {
+            alert("Updated Your Data")
+            document.getElementById("afterContent").innerHTML= "";
+            dataCheck()
+        } else (
+            alert(data.error)
+        )
+    }
 }
 
 function back() {
@@ -179,7 +197,7 @@ function back() {
 function apriTrue(apri) {
     if (apri == "admin") {
         window.apri = apri
-        document.getElementById("apri").innerHTML= '<button onclick="apriClick()">Admin</button>';
+        document.getElementById("apri").innerHTML= `<button onclick="apriClick()">Admin</button>`;
     }
 }
 

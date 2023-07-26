@@ -1,70 +1,49 @@
-boddy {
-    background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
+.adminHomeContent {
+    display: none;
 }
 
-.login-container {
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 150px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+#type-box {
+    margin-bottom: 20px;
     padding: 20px;
+    height: 100px;
+    width: 150px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.login-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+#type-box:hover {
+    transform: scale(1.05); /* Scales the div to 105% on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly increased shadow on hover */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
 }
 
-.group {
-    margin-bottom: 20px;
-}
-
-.group label {
-    display: block;
+#box-title {
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 5px;
+    text-align: center; 
 }
 
-.group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
 
-.group button {
-    width: 100%;
-    padding: 8px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  /* Style for input fields */
-  #fname,
-  #mname,
-  #lname,
-  #usernamee,
-  #passwordd,
-  #userid,
-  #dob {
-    width: 200px;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+#box-content {
     font-size: 14px;
-  }
+    color: #555;
+    margin-top: 10px;
+    text-align: center;
+}
 
-  
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust the minimum width as needed */
+    grid-gap: 20px;
+}
+
+.type-box {
+    margin-bottom: 20px;
+    padding: 20px;
+    height: 150px;
+}
+
+

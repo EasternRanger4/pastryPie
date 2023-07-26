@@ -8,7 +8,8 @@
     <link rel="icon" type="image/png" href="../favicon.png">
     <link href="../universal.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-rk/XF7J+lpTccF4r5n31TJfRtz3u1I8eTqvrsO3idpZ0hy2R+UA2OUHvSFT+4rRJ" crossorigin="anonymous">
+    <link href="login.css" rel="stylesheet" type="text/css" />
+    <link href="buttons.css" rel="stylesheet" type="text/css" />
     <style>
     </style>
 </head>
@@ -25,13 +26,198 @@
         <div id="contentToToggle" class="dropdown-content"> </div>
     </header>
     <boddy>
-       <div id="button"></div>
-       <div id="content"></div>
+
+        <!-- Login Container -->
+        <div class="login-container">
+            <h2>Login to continue</h2>
+            <div class="group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="group">
+                <label for="password">Password:</label>
+                <input type="password" id="password"  placeholder="Enter your password">
+            </div>
+            <div class="group">
+                <div id="loginSatus"></div>
+                <button onclick="loginUser()">Login</button>
+            </div>
+        </div> 
+
+        <!--Admin Homepage-->
+        <div class="adminHomeContent">
+            <h1> Hello <span id="name"></span>! </h1>
+            <p>Welcome to the Admin Homepage click on a service to get started</p>
+            
+            <div class="grid-container">
+                <div class="type-box" id="type-box" onclick="addUser()">
+                    <div id="box-title">Add New User</div> 
+                    <span id="box-content">Create a new username and password for a new user to access the system.</span>
+                </div>
+                <div class="type-box" id="type-box" onclick="viewUser()">
+                    <div id="box-title">View Users</div> 
+                    <span id="box-content">View all users on the tailor tech systems and edit their infomation.</span>
+                </div>
+                <div class="type-box" id="type-box" onclick="editVaribals()">
+                    <div id="box-title">Edit Varibals</div> 
+                    <span id="box-content">Edit all varibals on the webpage.</span>
+                </div>
+                <div class="type-box" id="type-box" onclick="news()">
+                    <div id="box-title">News</div> 
+                    <span id="box-content">Add and edit all news stories on the <a href="/news">News</a> page.</span>
+                </div>
+                <div class="type-box" id="type-box" onclick="updates()">
+                    <div id="box-title">Updates</div> 
+                    <span id="box-content">Edit and create updates on the webpage.</span>
+                </div>
+            </div>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+        <!--DOM-->
+        <div id="DOM"></div>
+
+        <!--Add User-->
+        <div id="addUser">
+            <br>
+            <label for="fname">Name</label>
+            <input id="fname" type="text"> <br>
+            <label for="mname">Middle Name</label>
+            <input id="mname"type="text"> <br>
+            <label for="lname">Second Name</label>
+            <input id="lname" type="text"> <br>
+            <br>
+            <label for="passwordd">Passowrd</label>
+            <input id="passwordd" type="text"> <br>
+            <label for="dob">Date of Birth</label>
+            <input id="dob" type="date">
+            <br>
+            <button onclick="addUser2()">Submit</button> 
+            <button onclick="back()">Back</button>  
+            <span id="ldrAddUser"></span>
+        </div>
+
+        <!--View Users-->
+        <div id="viewUser">
+        <br>
+        <button onclick="back()">Back</button>
+        <div id="userTable">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Middle Name</th>
+                    <th>Seccond Name</th>
+                </tr>
+                <tbody id="tableDataViewUser"></tbody>
+                <span id="ldrAddUser"></span>
+            </table>
+        </div>
+        </div>
+
+        <!--Edit Codes-->
+        <div id="editCodes"> <br>
+            <button onclick="back()">Back</button>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Owner Name</th>
+                    <th>Codename</th>
+                    <th>Type</th>
+                    <th>Pin</th>
+                    <th>Actions</th>              
+                  </tr>
+                </thead>
+                <tbody id="tableDataCodes"></tbody>
+            </table>
+        </div>
+
+        <!--News-->
+        <div id="news"> <br>
+            <button onclick="back()">Back</button> 
+            <button onclick="addNewNews()">Add New</button>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Img</th>       
+                    <th>Id</th>       
+                    <th>Actions</th>       
+                  </tr>
+                </thead>
+                <tbody id="tableDataNews"></tbody>
+            </table>
+        </div>
+
+        <!--New News-->
+        <div id="newNews"> <br>
+            <label for="title">Title:</label><br>
+            <input type="text" id="title"><br>
+            <label for="author">Author:</label><br>
+            <input type="text" id="author"><br>
+            <label for="img">Image Link</label> <br>
+            <input type="text" id="img"> <br>
+            <label for="info">Content</label> <br>
+            <textarea id="info"></textarea> <br>
+            <button onclick="submitNewNews()">Submit</button>
+        </div>
+
+        <!--Edit Updates-->
+        <div id="editUpdate"> <br>
+            <button onclick="back()">Back</button> 
+            <button onclick="newUpdate()">Add New</button>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Update</th>
+                    <th>Date</th>       
+                    <th>Git Hub Status</th>       
+                    <th>Status</th>       
+                    <th>Error Status</th>       
+                    <th>Actions</th>       
+                  </tr>
+                </thead>
+                <tbody id="tableDataUpdate"></tbody>
+            </table>
+        </div>
+
+        <!--Edit Updates-->
+        <div id="edditUp"> <br>
+            <button onclick="updates()">Back</button> 
+            <div id="upadteSet"></div>
+        </div>
+
+        <!--New Update-->
+        <div id="newUpdate"> <br>
+            <button onclick="updates()">Back</button> <br>
+            <label for="u_name">Name:</label><br>
+            <input type="text" id="u_name"><br>
+
+            <label for="u_date">Date:</label><br>
+            <input type="date" id="u_date"><br>
+
+            <label for="u_git_hub_status">Git Hub Status</label> <br>
+            <input type="text" id="u_git_hub_status"> <br>
+
+            <label for="u_status">Status</label> <br>
+            <input type="text" id="u_status"> <br>
+
+            <label for="u_error_status">Error Status</label> <br>
+            <input type="text" id="u_error_status"> <br>
+
+            <label for="u_info">Info</label> <br>
+            <textarea id="u_info"></textarea> <br>
+            <button onclick="submitUpadte()">Submit</button>
+        </div>
     </boddy>
-    <br> <br> <div id="buffer"></div>
+    <br> <br> <div id="buffer"></div> <br> <br>
     <footer id="footer">
     </footer>
     <script src="../universal.js"></script>
     <script src="script.js"></script>
-    <script src="more.js"></script>
+    <script src="_viewUsers.js"></script>
+    <script src="_addUsers.js"></script>
+    <script src="_editCodes.js"></script>
+    <script src="_news.js"></script>
+    <script src="_addUpdate.js"></script>
 </body>

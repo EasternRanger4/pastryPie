@@ -4,70 +4,63 @@ const { remove } = require("fs-extra");
 const { request } = require("http");
 const Datastore = require('nedb');
 const router = express.Router();
-const crypto = require('crypto');
 
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
 databaseLoginHistory.loadDatabase();
 const pageViews = new Datastore("data/history/pageViews.db");
 pageViews.loadDatabase();
 
-function hashPassword(password) {
-  const hash = crypto.createHash('sha256');
-  hash.update(password);
-  return hash.digest('hex');
-}
-
 router.post('/addUser', async (request, response) => {
-  const fname = request.body.fname; // First Name
-  const mname = request.body.mname; // Middle Name
-  const lname = request.body.lname; // Last Name
-  const passwordll = request.body.password; // Corrected from request.body.username
-  const dob = request.body.dob; // Date of birth
-  const clinetApri = "false";
+    const fname = request.body.fname; // First Name
+    const mname = request.body.mname; // Middle Name
+    const lname = request.body.lname; // Last Name
+    const password = request.body.password; // Password
+    const dob = request.body.dob; // Date of birth
+    const clinetApri = "false";
 
-  let username = `${lname.toLowerCase()}${dob.split("-")[0]}`; // lastName,yearborn
-  // Check if username is already in use in data/userData.json
-  const userData = JSON.parse(fs.readFileSync("data/userData.json", "utf8"));
 
-  let isUsernameTaken = userData.some(user => user.username === username);
-  let suffix = "a";
-  while (isUsernameTaken) {
-    username = `${lname.toLowerCase()}${dob.split("-")[0]}${suffix}`;
-    isUsernameTaken = userData.some(user => user.username === username);
-    suffix = String.fromCharCode(suffix.charCodeAt(0) + 1);
-  }
+    let username = `${lname.toLowerCase()}${dob.split("-")[0]}`; // lastName,yearborn
+    // Check if username is already in use in data/userData.json
+    const userData = JSON.parse(fs.readFileSync("data/userData.json", "utf8"));
 
-  //User ID
-  var maxUserId = "0";
-  for (var i = 0; i < userData.length; i++) {
-    if (userData[i].userid > maxUserId) {
-      maxUserId = userData[i].userid;
+    let isUsernameTaken = userData.some(user => user.username === username);
+    let suffix = "a";
+    while (isUsernameTaken) {
+      username = `${lname.toLowerCase()}${dob.split("-")[0]}${suffix}`;
+      isUsernameTaken = userData.some(user => user.username === username);
+      suffix = String.fromCharCode(suffix.charCodeAt(0) + 1);
     }
-  }
-  var userid = String(Number(maxUserId) + 1);
 
-  //User SSC 
-  const userSSC = generateRandomCode(4);
-  const password = hashPassword(passwordll);
+    //User ID
+    var maxUserId = "0";
+    for (var i = 0; i < userData.length; i++) {
+      if (userData[i].userid > maxUserId) {
+        maxUserId = userData[i].userid;
+      }
+    }
+    var userid = String(Number(maxUserId) + 1);
 
-  const newUser = {
-    fname,
-    mname,
-    lname,
-    password,
-    dob,
-    clinetApri,
-    username,
-    userid,
-    userSSC
-  };
+    //User SSC 
+    const userSSC = generateRandomCode(4);
 
-  userData.push(newUser);
-  fs.writeFileSync("data/userData.json", JSON.stringify(userData, null, 2));
+    const newUser = {
+      fname,
+      mname,
+      lname,
+      password,
+      dob,
+      clinetApri,
+      username,
+      userid,
+      userSSC
+    };
 
-  delete newUser.userSSC;
-  delete newUser.password;
-  return response.json({ message: true, content: newUser });
+    userData.push(newUser);
+    fs.writeFileSync("data/userData.json", JSON.stringify(userData, null, 2));
+
+    delete newUser.userSSC;
+    delete newUser.password;
+    return response.json({ message: true, content: newUser });
 });
 
 router.post('/seeUser', async (request, response) => {
