@@ -19,7 +19,7 @@ function hashPassword(password) {
 router.post("/", async (request, response) => {
   try {
     // Read the userdata.json file
-    const data = fs.readFileSync('data/userdata.json', 'utf8');
+    const data = fs.readFileSync('data/userData.json', 'utf8');
     const userData = JSON.parse(data);
 
     // Find the user based on the provided userid

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+    <!--Meta Data-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--User Head Data-->
+    <title>Parvati's Webpage</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link href="../../universal.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1 onclick="home()">Kamran Industries</h1>
+            <div class="menu-btn" onclick="toggleMenu()">☰</div>
+            <div class="menu-btn2" onclick="toggleMenu()">X</div>
+            <div class="banner-links">
+                <span id="linksLL"></span>
+            </div>
+        </div>
+        <div id="contentToToggle" class="dropdown-content"> </div>
+    </header>
+    <boddy>
+        <br>
+        <!--Setup-->
+        <div id="center-container">
+            <div id="setup">
+                <label for="personOneName">Person One Name:</label> <br>
+                <input type="text" id="personOneName"> <br>
+                <label for="personTwoName">Person Two Name:</label> <br>
+                <input type="text" id="personTwoName"> <br>
+                <button onclick="setup()">Submit</button>
+            </div>
+        </div>
+
+        <!--Game-->
+        <div id="game">
+            <div id="personOne">
+                <center><h2>Team <span id="p1Nmae"></span></h2></center>
+                <div id="countdownOne"></div>
+            </div>
+            <div id="personTwo">
+                <center><h2>Team <span id="p2Nmae"></span></h2></center>
+                <div id="countdownTwo"></div>
+
+
+            </div>
+        </div>
+        <div id="content"></div>
+    </boddy>
+    <br> <br> <div id="buffer"></div>
+    <footer id="footer">
+    </footer>
+    <script src="../../universal.js"></script>
+    <script src="script.js"></script>
+</body>

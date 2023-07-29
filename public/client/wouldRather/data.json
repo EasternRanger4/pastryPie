@@ -1,0 +1,51 @@
+[
+    {
+        "id": 0,
+        "question": "Would you rather go to the Sun and burn to death or go to Pluto and freeze to death?",
+        "optionOne": "Sun",
+        "optionTwo": "Pluto",
+        "optionOneAction": "You embarked on a daring mission to the Sun but unfortunately couldn't survive the intense heat.",
+        "optionTwoAction": "You decided to go on the mission of going to Pluto and found a shelter that helped for a minute or two but then the cold starts to kick in and you freeze to death."
+        
+    },
+    {
+        "id": 1,
+        "question": "Would you rather be rich or be poor but have every power in the world?",
+        "optionOne": "Rich",
+        "optionTwo": "Poor",
+        "optionOneAction": "You became fabulously rich and enjoyed a life of luxury and opulence.",
+        "optionTwoAction": "You are stuck with nothing for some time but then you gain immense power as a gift from God."
+    },
+    {
+        "id": 2,
+        "question": "Would you rather be miserable but live forever or live for one year but have a happy life?",
+        "optionOne": "Live Forever",
+        "optionTwo": "Live for one year",
+        "optionOneAction": "You gained eternal life but found it to be a never-ending struggle, feeling constant misery.",
+        "optionTwoAction": "You lived a year filled with joy, love, and adventure. Though short, it was a life well-lived, and your life is always remembered."
+    },
+    {
+        "id": 3,
+        "question": "Would you rather be able to fly or have invisibility?",
+        "optionOne": "Fly",
+        "optionTwo": "Invisibility",
+        "optionOneAction": "You soared through the skies with the power of flight, exploring the world from a bird's-eye view and dodging attacks against animies.",
+        "optionTwoAction": "With your power of invisibility, you became a master spy, gathering secret information to maintain peace in the world and in a battle you wouldn't be seen."
+    },
+    {
+        "id": 4,
+        "question": "Would you rather have teleportation or time travel?",
+        "optionOne": "Teleportation",
+        "optionTwo": "Time Travel",
+        "optionOneAction": "You could instantaneously teleport to any location, making traveling a breeze.",
+        "optionTwoAction": "Armed with the ability to time travel, you journeyed to witness significant historical events, gaining wisdom and understanding while also being able to go back alitle while earlier and move somewhere else"
+    },
+    {
+        "id": 5,
+        "question": "Would you rather live in the Harry Potter Universe or live in the Star Wars Universe?",
+        "optionOne": "Harry Potter Universe",
+        "optionTwo": "Star Wars Universe",
+        "optionOneAction": "You entered the enchanting world of Harry Potter, becoming a skilled wizard and facing magical adventures.",
+        "optionTwoAction": "You ventured into the Star Wars Universe and became a heroic Jedi, defending the galaxy from darkness."
+    }
+]

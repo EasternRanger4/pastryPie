@@ -8,7 +8,9 @@ function orderSessions() {
         window.location = "../client/coffee"
     }else if (code == "004") {
         window.location = "../temp/usa"
-    } else {
+    } else if (code == "005") {
+        window.location = "../client/wouldRather"
+    }else {
         alert("Invaled Session Code")
     }
 }

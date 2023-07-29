@@ -1,0 +1,19 @@
+#card {
+    background-color: #CBC3E3;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+button {
+    background-color: magenta;
+}
+
+h2 {
+    color: blue;
+}
+
+button:hover {
+    background-color: blue;
+  }
+  

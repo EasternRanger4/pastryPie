@@ -1,0 +1,302 @@
+[
+    {
+        "question": "What is the capital city of France?",
+        "optionOne": {
+            "option": "Paris",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "London",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Berlin",
+            "points": 1
+        }
+    },
+    {
+        "question": "Which planet is known as the 'Red Planet'?",
+        "optionOne": {
+            "option": "Mars",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Venus",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Jupiter",
+            "points": 1
+        }
+    },
+    {
+        "question": "Who is the author of the famous play 'Romeo and Juliet'?",
+        "optionOne": {
+            "option": "William Shakespeare",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Charles Dickens",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Jane Austen",
+            "points": 1
+        }
+    },
+    {
+        "question": "What is the largest mammal on Earth?",
+        "optionOne": {
+            "option": "Blue Whale",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "African Elephant",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Giraffe",
+            "points": 1
+        }
+    },
+    {
+        "question": "Which famous scientist developed the theory of general relativity?",
+        "optionOne": {
+            "option": "Albert Einstein",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Isaac Newton",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Galileo Galilei",
+            "points": 1
+        }
+    },
+    {
+        "question": "In which country would you find the Taj Mahal?",
+        "optionOne": {
+            "option": "India",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "China",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Egypt",
+            "points": 1
+        }
+    },
+    {
+        "question": "What is the chemical symbol for water?",
+        "optionOne": {
+            "option": "H2O",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "CO2",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "NaCl",
+            "points": 1
+        }
+    },
+    {
+        "question": "Which famous artist painted the 'Mona Lisa'?",
+        "optionOne": {
+            "option": "Leonardo da Vinci",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Vincent van Gogh",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Pablo Picasso",
+            "points": 1
+        }
+    },
+    {
+        "question": "What is the currency of Japan?",
+        "optionOne": {
+            "option": "Yen",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Dollar",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Euro",
+            "points": 1
+        }
+    },
+    {
+        "question": "Who was the first person to step on the moon?",
+        "optionOne": {
+            "option": "Neil Armstrong",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Buzz Aldrin",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Yuri Gagarin",
+            "points": 1
+        }
+    },
+    {
+        "question": "What is the largest planet in our solar system?",
+        "optionOne": {
+            "option": "Jupiter",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Saturn",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Neptune",
+            "points": 1
+        }
+    },
+    {
+        "question": "Who wrote the famous novel 'Pride and Prejudice'?",
+        "optionOne": {
+            "option": "Jane Austen",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Emily Brontë",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Charlotte Brontë",
+            "points": 1
+        }
+    },
+    {
+        "question": "Which country is known as the 'Land of the Rising Sun'?",
+        "optionOne": {
+            "option": "Japan",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "China",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "South Korea",
+            "points": 1
+        }
+    },
+    {
+        "question": "What is the chemical symbol for gold?",
+        "optionOne": {
+            "option": "Au",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Ag",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Fe",
+            "points": 1
+        }
+    },
+    {
+        "question": "Who painted the famous artwork 'The Starry Night'?",
+        "optionOne": {
+            "option": "Vincent van Gogh",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Leonardo da Vinci",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Michelangelo",
+            "points": 1
+        }
+    },
+    {
+        "question": "What is the chemical formula for ozone?",
+        "optionOne": {
+            "option": "O3",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "CO2",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "H2O",
+            "points": 1
+        }
+    },
+    {
+        "question": "Which famous scientist formulated the three laws of motion?",
+        "optionOne": {
+            "option": "Isaac Newton",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Galileo Galilei",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Albert Einstein",
+            "points": 1
+        }
+    },
+    {
+        "question": "What is the currency of Brazil?",
+        "optionOne": {
+            "option": "Real",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Peso",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Baht",
+            "points": 1
+        }
+    },
+    {
+        "question": "Which African country is known as the 'Pearl of Africa'?",
+        "optionOne": {
+            "option": "Uganda",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Kenya",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "Tanzania",
+            "points": 1
+        }
+    },
+    {
+        "question": "What is the chemical symbol for sodium?",
+        "optionOne": {
+            "option": "Na",
+            "points": 10
+        },
+        "optionTwo": {
+            "option": "Ca",
+            "points": 1
+        },
+        "optionThree": {
+            "option": "K",
+            "points": 1
+        }
+    }
+]

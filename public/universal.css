@@ -7,8 +7,13 @@
 @media (max-width: 768px) {
   .menu-btn {
     position: fixed;
+    background-color: #333;
+    border-radius: 360px;
+    padding: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
     top: 40px;
-    right: 30px; /* Adjust this value as needed to control the distance from the right edge */
+    right: 10%; /* Adjust this value as needed to control the distance from the right edge */
     transform: translateY(-50%);
     z-index: 9999; /* Adjust the z-index if needed to make sure the button is on top of other elements */
   }
@@ -22,8 +27,13 @@
 }
 .menu-btn2 {
   position: fixed;
+  background-color: #333;
+  border-radius: 360px;
+  padding: 5px;
+  padding-bottom: 0px;
+  padding-top: 0px;
     top: 40px;
-    right: 30px; /* Adjust this value as needed to control the distance from the right edge */
+    right: 10%; /* Adjust this value as needed to control the distance from the right edge */
     transform: translateY(-50%);
     z-index: 9999; /* Adjust the z-index if needed to make sure the button is on top of other elements */
   display: none; 
@@ -39,8 +49,6 @@
   text-decoration: none;
 }
 
-
-
 #contentToToggle {
   display: flex;
   justify-content: flex-end;
@@ -48,9 +56,9 @@
   background-color: #333;
   padding: 10px;
   display: none; /* The content will be hidden by default */
-  position: absolute; /* or position: fixed; */
-  top: 80px; /* Position it at the top of the containing element */
-  right: 10px; /* Position it at the right of the containing element */
+  position: fixed; /* Change to position: fixed */
+  top: 80px; /* Position it at the top of the viewport */
+  right: 10px; /* Position it at the right of the viewport */
   z-index: 1; /* Set a higher z-index to make it appear on top of other elements */
   border-radius: 10px;
 }
@@ -63,6 +71,16 @@
   background-color: #333;
   color: #fff;
   padding: 20px;
+  width: calc(100% - 4%); /* Subtract 5px to account for padding on both sides */
+  padding-right: 2%;
+  padding-left: 2%;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    /* Additional styles for smaller screens */
+  }
 }
 
 .banner h1 {
@@ -82,7 +100,6 @@
 
 body {
   margin: 5px;
-  padding-bottom: 60px; /* Adjust the value to match the footer height */
   font-family: sans-serif;
 }
 
@@ -102,6 +119,7 @@ footer {
   padding: 20px;
   text-align: center;
 }
+
 
 table {
   border-collapse: collapse;

@@ -8,7 +8,7 @@ async function setItems() {
     }  
 
     const toSet1 = `<a href="/about">About</a><a href="/contact">Contact</a><a href="/news">News</a>${window.page}`;
-    const toSet2 = `<p>&copy; 2023 Kamran Tailor. All rights reserved. <br> Pastry Pie V0.12 <br> <a href="/legal">legal</a> <a href="/sitemap">Sitemap</a>
+    const toSet2 = `<p>&copy; 2023 Kamran Tailor. All rights reserved. <br> Pastry Pie V0.12.1 <br> <a href="/legal">legal</a> <a href="/sitemap">Sitemap</a>
     <a href="https://github.com/KamranTailor/pastryPie">Git Hub</a> <a href="/updates">Updates</a></p></footer> `
     const toSet3 = `<div class="menu-links"><a href="/about">About</a><a href="/contact">Contact</a><a href="/news">News</a> ${window.page}</div>`;
     document.getElementById("linksLL").innerHTML= toSet1;
