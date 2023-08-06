@@ -75,4 +75,7 @@ function back() {
     //edit upfate - remove 
     var loginContainer = document.querySelector('#edditUp'); 
     loginContainer.style.display = 'none'; 
+    //music - remove 
+    var loginContainer = document.querySelector('#music'); 
+    loginContainer.style.display = 'none'; 
 }

@@ -26,6 +26,7 @@ const fortnite = require('./apiRequests/fortnite.js');
 const space = require('./apiRequests/space.js');
 const coffee = require('./apiRequests/coffee.js');
 const pages = require('./apiRequests/pageUpdate.js');
+const music = require('./apiRequests/music.js');
 
 //Load Databases
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
@@ -46,6 +47,7 @@ app.use('/fortnite', fortnite);
 app.use('/space', space);
 app.use('/coffee', coffee);
 app.use('/pages', pages);
+app.use('/music', music);
 
 
 

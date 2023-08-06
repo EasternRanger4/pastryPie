@@ -70,6 +70,10 @@
                     <div id="box-title">Updates</div> 
                     <span id="box-content">Edit and create updates on the webpage.</span>
                 </div>
+                <div class="type-box" id="type-box" onclick="music()">
+                    <div id="box-title">Music</div> 
+                    <span id="box-content">Update the featuerd music page.</span>
+                </div>
             </div>
             <button onclick="logout()">Logout</button>
         </div>
@@ -209,6 +213,22 @@
             <textarea id="u_info"></textarea> <br>
             <button onclick="submitUpadte()">Submit</button>
         </div>
+
+        <!--Music-->
+        <div id="music"> <br>
+            <h1>Add Songs</h1>
+            <button onclick="addSongs()">Add 30 Songs</button>
+            <button onclick="clearDatabase()">Clear Database</button>
+
+            <form>
+                Song Name: <input id="songName">
+                Song By: <input id="songBy">
+                Points: <input type="number" id="songPoints">
+                HTML: <input id="songTxt">
+            </form>
+            <h1>Top Songs</h1>
+            <ul id="songList"></ul>
+        </div>
     </boddy>
     <br> <br> <div id="buffer"></div> <br> <br>
     <footer id="footer">
@@ -220,4 +240,5 @@
     <script src="_editCodes.js"></script>
     <script src="_news.js"></script>
     <script src="_addUpdate.js"></script>
+    <script src="_music.js"></script>
 </body>
