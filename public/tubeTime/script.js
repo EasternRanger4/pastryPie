@@ -20,3 +20,7 @@ function bikePoints() {
 function roadDistrup() {
     window.location = "roadDisruptions"
 }
+
+function bigMap() {
+    window.location = "bigMap"
+}

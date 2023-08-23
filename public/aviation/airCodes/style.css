@@ -1,0 +1,41 @@
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #444; /* Slightly lighter than the background */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 50px auto;
+    width: fit-content;
+}
+
+label {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="text"] {
+    padding: 5px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background-color: #555;
+    color: #fff;
+}
+
+#sid {
+    background-color: #666;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#results {
+    margin-top: 10px;
+    color: white;
+}

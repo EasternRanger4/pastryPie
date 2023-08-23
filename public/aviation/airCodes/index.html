@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <!--Meta Data-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--User Head Data-->
+    <title>Air Codes</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link href="../../universal.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1 onclick="home()">Kamran Industries</h1>
+            <div class="menu-btn" onclick="toggleMenu()">☰</div>
+            <div class="menu-btn2" onclick="toggleMenu()">X</div>
+            <div class="banner-links">
+                <span id="linksLL"></span>
+            </div>
+        </div>
+        <div id="contentToToggle" class="dropdown-content"> </div>
+    </header>
+    <boddy>
+        <h2>Search for an airline with the ICAO/IATA Codes:</h2>
+        <div id="content"> 
+            <label>
+                <input type="radio" name="switch" value="icao" id="icaoRadio" checked> ICAO
+                <input type="radio" name="switch" value="iata" id="iataRadio"> IATA
+            </label>
+            <input id="value">
+            <span id="sid" onclick="search()">🔍</span>
+            <div id="results"></div>
+        </div>
+    </boddy>
+    <footer id="footer">
+    </footer>
+    <script src="../../universal.js"></script>
+    <script src="../../loginCheck.js"></script>
+    <script src="script.js"></script>
+</body>

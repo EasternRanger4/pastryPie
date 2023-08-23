@@ -1,6 +1,8 @@
 const express = require('express');
 const fetch = require('isomorphic-fetch');
 const router = express.Router();
+const fs = require('fs');
+
 
 // TFL Bike Points
 router.get('/bikePoints', async (request, response) => {
@@ -9,6 +11,15 @@ router.get('/bikePoints', async (request, response) => {
   const tflResponse = await fetch(url);
   const tflBikePoint = await tflResponse.json();
   response.json({ message: true, tflBikePoint });
+});
+
+// TFL Tube Stop Points
+router.get('/trainStop', async (request, response) => {
+  const tflKey = process.env.KEY;
+  const url = `https://api.tfl.gov.uk/StopPoint/Mode/tube?app_id=${tflKey}`;
+  const tflResponse = await fetch(url);
+  const content = await tflResponse.json();
+  response.json({ message: true, content });
 });
 
 // TFL Road Disruptions
@@ -113,5 +124,18 @@ router.post('/busTimes', async (request, response) => {
   const resData = await tflResponse.json();
   response.json({ message: true, resData });
 });
+
+router.post('/bigMap', async (request, response) => {
+  try {
+    const filePath = `universalData/bigMap/${request.body.id}.json`
+    const data = fs.readFileSync(filePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    // Now you can work with the JSON data
+    response.json({jsonData});
+  } catch (err) {
+    console.error('Error:', err);
+  }
+});
+
 
 module.exports = router;

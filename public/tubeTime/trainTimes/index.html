@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="../../favicon.png">
     <link href="../../universal.css" rel="stylesheet" type="text/css" />
     <link href="../style.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
     <style>
     </style>
 </head>
@@ -26,15 +27,63 @@
     <boddy>
         <br>
         <button onclick="goBack()">Go to Tube Time Home</button>
+        <button onclick="restart()">Restart</button>
+        <span id="button"></span>
         <br> <br>
-        <div id="content"></div>SERVICE IN DEVELOPMENT<br>
-        <div id="button"></div>
+
+        <center><div class="loader"></div></center>
+
+        <!--Popup-->
+        <div class="popup" id="popup">
+            <div class="popup-content">
+              <span class="close" id="closePopup">&times;</span>
+              <h2 id="popupTitle">Title</h2>
+              <p id="popupContent">This is the content of the popup.</p>
+              <center> <button onclick="closePop()">Close</button></center>
+            </div>
+          </div>
+
+        <!--Line-->
+        <div class="Awrapper">
+            <div class="line">
+                <h1>Select line</h1>
+                <select id="line" name="line">
+                    <option value="bakerloo">Bakerloo</option>
+                    <option value="central">Central</option>
+                    <option value="circle">Circle</option>
+                    <option value="district">District</option>
+                    <option value="hammersmith-city">Hammersmith & City</option>
+                    <option value="jubilee">Jubilee</option>
+                    <option value="metropolitan">Metropolitan</option>
+                    <option value="northern">Northern</option>
+                    <option value="piccadilly">Piccadilly</option>
+                    <option value="victoria">Victoria</option>
+                    <option value="waterloo-city">Waterloo & City</option>
+                </select>
+                <br>
+                <button onclick="onStart()">Find Station</button>
+            </div>
+        </div>
+        <!--Station Search-->
+        <div class="Bwrapper">
+            <div id="content">
+                <h1>Enter Station</h1>
+                
+                <input type="text" id="searchInput" placeholder="Search...">
+                <ul id="results"></ul>
+            </div>
+        </div>
+
+        <!--Station Display-->
+        <div id="contentT"></div>
+
     </boddy>
-    <br> <br> <div id="buffer"></div>
     <footer id="footer">
     </footer>
     <script src="../../universal.js"></script>
     <script src="../../loginCheck.js"></script>
     <script src="../script.js"></script>
+    <script src="script.js"></script>
+    <script src="search.js"></script>
     <script src="../pageScript.js"></script>
 </body>

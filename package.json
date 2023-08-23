@@ -10,14 +10,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.4.0",
     "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "fs-extra": "^11.1.1",
+    "gtfs-realtime-bindings": "^1.1.1",
     "isomorphic-fetch": "^3.0.0",
+    "mta-gtfs": "^1.1.0",
     "nedb": "^1.8.0",
     "nodemailer": "^6.9.3",
+    "protobufjs": "^7.2.4",
     "requests": "^0.3.0",
     "uuid": "^9.0.0"
   }

@@ -9,6 +9,9 @@ const fsN = require('fs-extra');
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
 const crypto = require('crypto');
+const protobuf = require('protobufjs'); 
+const GtfsRealtimeBindings = require("gtfs-realtime-bindings");
+
 
 const app = express();
 app.use(express.json());
@@ -27,6 +30,8 @@ const space = require('./apiRequests/space.js');
 const coffee = require('./apiRequests/coffee.js');
 const pages = require('./apiRequests/pageUpdate.js');
 const music = require('./apiRequests/music.js');
+const nycSubway = require('./apiRequests/newYorkSubway.js');
+const airData = require('./apiRequests/airData.js');
 
 //Load Databases
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
@@ -48,6 +53,8 @@ app.use('/space', space);
 app.use('/coffee', coffee);
 app.use('/pages', pages);
 app.use('/music', music);
+app.use('/mta', nycSubway);
+app.use('/airData', airData);
 
 
 
@@ -68,16 +75,46 @@ app.post('/geocode', async (req, res) => {
   }
 });
 
-app.post('/pageView', async (request, responce) => {
-  try {
-    pageViews.insert({
-      ipAddress: request.body.ipAddress,
-      userAgent: request.body.userAgent
-    });
-    responce.json({message: true})
-  } catch (error) {
-    responce.json({message: false})
-  }
+app.post('/pageView', (request, response) => {
+  const dataToSet = {
+    ipAddress: request.body.ipAddress,
+    userAgent: request.body.userAgent
+  };
+
+  const filePath = 'data/history/pageViews.json'; // Path to your JSON file
+
+  // Step 1: Read the existing JSON file
+  fs.readFile(filePath, 'utf8', (readErr, rawData) => {
+    if (readErr) {
+      console.error('Error reading file:', readErr);
+      response.status(500).json({ error: 'An error occurred while reading the file.' });
+      return;
+    }
+
+    try {
+      const jsonData = JSON.parse(rawData);
+
+      // Step 2: Modify Data
+      jsonData.push(dataToSet);
+
+      // Step 3: Stringify JSON
+      const updatedJsonString = JSON.stringify(jsonData, null, 2);
+
+      // Step 4: Write to File
+      fs.writeFile(filePath, updatedJsonString, 'utf8', writeErr => {
+        if (writeErr) {
+          console.error('Error writing file:', writeErr);
+          response.status(500).json({ error: 'An error occurred while writing to the file.' });
+          return;
+        }
+
+        response.status(200).json({ message: 'Page view data logged successfully.' });
+      });
+    } catch (parseErr) {
+      console.error('Error parsing JSON:', parseErr);
+      response.status(500).json({ error: 'An error occurred while parsing JSON.' });
+    }
+  });
 });
 
 //Test Command

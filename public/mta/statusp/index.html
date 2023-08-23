@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+    <!--Meta Data-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--User Head Data-->
+    <title>Bike Points</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="../../universal.css" rel="stylesheet" type="text/css" />
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1 onclick="home()">Kamran Industries</h1>
+            <div class="menu-btn" onclick="toggleMenu()">☰</div>
+            <div class="menu-btn2" onclick="toggleMenu()">X</div>
+            <div class="banner-links">
+                <span id="linksLL"></span>
+            </div>
+        </div>
+        <div id="contentToToggle" class="dropdown-content"> </div>
+    </header>
+    <boddy>
+        <br>
+        <center>
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <span id="left" onclick="closePop()">X</span>
+              <span class="close" id="closePopup">&times;</span>
+              <p id="popupContent">This is the content of the popup.</p>
+              <center> <button onclick="closePop()">Close</button></center>
+            </div>
+          </div>
+        </center>
+        <div id="loader"><center><div class="loader"></div></center></div>
+        <div id="content">
+            <button onclick="BT()">BT</button>
+            <button onclick="LIRR()">LIRR</button>
+            <button onclick="MetroNorth()">Metro North</button>
+            <button onclick="bus()">Bus</button>
+            <button onclick="subway()">Subway</button>
+
+            <div id="ts"></div>
+        </div>
+    </boddy>
+    <footer id="footer">
+    </footer>
+    <script src="../../universal.js"></script>
+    <script src="../../loginCheck.js"></script>
+    <script src="script.js"></script>
+    <script src="_onStart.js"></script>
+</body>

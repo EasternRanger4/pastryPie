@@ -18,3 +18,7 @@ function other() {
 function space() {
     window.location = "/space"
 }
+
+function aviation() {
+    window.location = "/aviation/airCodes"
+}
