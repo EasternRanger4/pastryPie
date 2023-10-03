@@ -38,13 +38,13 @@ router.post('/addUser', async (request, response) => {
   }
 
   //User ID
-  var maxUserId = "0";
+  var maxUserId = 0; // Initialize maxUserId as a number
   for (var i = 0; i < userData.length; i++) {
-    if (userData[i].userid > maxUserId) {
-      maxUserId = userData[i].userid;
+    if (Number(userData[i].userid) > maxUserId) { // Convert to number here
+      maxUserId = Number(userData[i].userid); // Convert to number here
     }
   }
-  var userid = String(Number(maxUserId) + 1);
+  var userid = String(maxUserId + 1); // Increment as a number, then convert to string
 
   //User SSC 
   const userSSC = generateRandomCode(4);
@@ -94,6 +94,29 @@ router.post('/seeUser', async (request, response) => {
     }
 });
 
+router.post('/seeUserU', async (request, response) => {
+  const userid = request.body.userID;
+  const userSSC = request.body.userSSC;
+  const users = JSON.parse(fs.readFileSync('data/userData.json', 'utf-8'));
+
+  const user = users.find(user => user.userid === userid && user.userSSC === userSSC);
+
+  if (user) {
+    if (user.clinetApri == "admin") {
+      const filePath = 'data/userData.json';
+      fs.readFile(filePath, 'utf8', (err, data) => {
+          const jsonData = JSON.parse(data);
+          for (i in jsonData) {
+            delete jsonData[i].password;
+            delete jsonData[i].userSSC;
+          }
+          response.json({ message: true, content: jsonData[userid] });
+      });
+    }
+  } else {
+    response.json({ message: false});
+  }
+});
 
 router.post('/seeSpesUser', async (request, response) => {
   const userid = request.body.userID;

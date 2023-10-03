@@ -1,4 +1,4 @@
-function myAccount() {
+function myAccoucnt() {
     var content = document.querySelector('#content'); 
     content.style.display = 'none'; 
 
@@ -9,6 +9,8 @@ function myAccount() {
     login.style.display = 'block'; 
 
     document.getElementById("l_name").innerHTML= userData.fname;
+
+    window.location = "/myAccount";
 }
 
 async function myAccountOne() {
@@ -39,8 +41,6 @@ async function myAccountOne() {
         <label for="lname">Second Name</label>
         <input id="lname" value="${userData.lname}" type="text"> <br>
         <br>
-        <label for="passwordd">Passowrd</label>
-        <input id="passwordd" type="password"> <br>
         <label for="dob">Date of Birth</label>
         <input id="dob" value="${userData.dob}" type="date"> <br>
         <button onclick="myAccountTwo()">Submit</button> <button onclick="onStart()">Back</button>`

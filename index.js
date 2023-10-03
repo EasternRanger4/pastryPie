@@ -32,6 +32,8 @@ const pages = require('./apiRequests/pageUpdate.js');
 const music = require('./apiRequests/music.js');
 const nycSubway = require('./apiRequests/newYorkSubway.js');
 const airData = require('./apiRequests/airData.js');
+const bigMap = require('./apiRequests/bigMap.js');
+const changePass = require('./apiRequests/changePass.js');
 
 //Load Databases
 const databaseLoginHistory = new Datastore("data/history/loginHistory.db");
@@ -55,6 +57,8 @@ app.use('/pages', pages);
 app.use('/music', music);
 app.use('/mta', nycSubway);
 app.use('/airData', airData);
+app.use('/bigMap', bigMap);
+app.use('/changePass', changePass);
 
 
 
